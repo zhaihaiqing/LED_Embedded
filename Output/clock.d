@@ -1,0 +1,11 @@
+.\output\clock.o: Rtt_nano\clock.c
+.\output\clock.o: .\Rtt_nano\include\rthw.h
+.\output\clock.o: .\Rtt_nano\include\rtthread.h
+.\output\clock.o: .\Rtt_nano\rtconfig.h
+.\output\clock.o: .\Rtt_nano\include\rtthread.h
+.\output\clock.o: .\Rtt_nano\finsh\finsh_config.h
+.\output\clock.o: .\Rtt_nano\include\rtdebug.h
+.\output\clock.o: .\Rtt_nano\include\rtdef.h
+.\output\clock.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\output\clock.o: .\Rtt_nano\include\rtservice.h
+.\output\clock.o: .\Rtt_nano\finsh\finsh_api.h

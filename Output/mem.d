@@ -1,0 +1,17 @@
+.\output\mem.o: Rtt_nano\mem.c
+.\output\mem.o: .\Rtt_nano\include\rthw.h
+.\output\mem.o: .\Rtt_nano\include\rtthread.h
+.\output\mem.o: .\Rtt_nano\rtconfig.h
+.\output\mem.o: .\Rtt_nano\include\rtthread.h
+.\output\mem.o: .\Rtt_nano\finsh\finsh_config.h
+.\output\mem.o: .\Rtt_nano\include\rtdebug.h
+.\output\mem.o: .\Rtt_nano\include\rtdef.h
+.\output\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\output\mem.o: .\Rtt_nano\include\rtservice.h
+.\output\mem.o: .\Rtt_nano\finsh\finsh_api.h
+.\output\mem.o: .\Rtt_nano\finsh\finsh.h
+.\output\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
+.\output\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\output\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

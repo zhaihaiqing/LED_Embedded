@@ -1,0 +1,11 @@
+.\output\memheap.o: Rtt_nano\memheap.c
+.\output\memheap.o: .\Rtt_nano\include\rthw.h
+.\output\memheap.o: .\Rtt_nano\include\rtthread.h
+.\output\memheap.o: .\Rtt_nano\rtconfig.h
+.\output\memheap.o: .\Rtt_nano\include\rtthread.h
+.\output\memheap.o: .\Rtt_nano\finsh\finsh_config.h
+.\output\memheap.o: .\Rtt_nano\include\rtdebug.h
+.\output\memheap.o: .\Rtt_nano\include\rtdef.h
+.\output\memheap.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\output\memheap.o: .\Rtt_nano\include\rtservice.h
+.\output\memheap.o: .\Rtt_nano\finsh\finsh_api.h
