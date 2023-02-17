@@ -19,7 +19,7 @@
 
 
 
-#define PIDDUTYMAX	95	//占空比保留两位小数，最大占空比为90.00%
+#define PIDDUTYMAX	100	//占空比保留两位小数，最大占空比为90.00%
 #define PIDDUTYMIN	0		//占空比最小值为0
 
 typedef struct
@@ -42,7 +42,7 @@ typedef struct
 extern sPID_t PID;
 
 
-
+extern struct rt_semaphore cal_adcpid_sem;
 
 
 void LED1_Init(float Duty);

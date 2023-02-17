@@ -80,26 +80,36 @@ void Start_ADC_ConV(uint8_t ch)
 	if(ch == ADC_CONV_A)
 	{
 		GPIO_ResetBits(GPIOE, GPIO_Pin_13);
-		Delay_us(100);
+		__nop();
+		__nop();
+		//Delay_us(2);
 		GPIO_SetBits(GPIOE, GPIO_Pin_13);	//上升沿启动转换
 	}
 	else if(ch == ADC_CONV_B)
 	{
 		GPIO_ResetBits(GPIOE, GPIO_Pin_14);
-		Delay_us(100);
+		__nop();
+		__nop();
+		//Delay_us(2);
 		GPIO_SetBits(GPIOE, GPIO_Pin_14);	//上升沿启动转换
 	}
 	else if(ch == ADC_CONV_C)
 	{
 		GPIO_ResetBits(GPIOE, GPIO_Pin_15);
-		Delay_us(100);
+		__nop();
+		__nop();
+		//Delay_us(2);
 		GPIO_SetBits(GPIOE, GPIO_Pin_15);	//上升沿启动转换
 	}
 	else if(ch == ADC_CONV_ALL)
 	{
-		GPIO_ResetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
-		Delay_us(100);
-		GPIO_SetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);	//上升沿启动转换
+		//GPIO_ResetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
+		GPIOE->BSRRH = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+		__nop();
+		__nop();
+		//Delay_us(2);
+		GPIOE->BSRRL = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+		//GPIO_SetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);	//上升沿启动转换
 	}
 	
 }

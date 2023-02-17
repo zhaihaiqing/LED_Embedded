@@ -328,7 +328,7 @@ void OLED_Init(void)
 	OLED_Clear();
 }
 
-uint8_t Oled_bRefresh = 0;
+//uint8_t Oled_bRefresh = 0;
 /********************************************************************
 *  功能   ：OLED显示
 *  备注   ：主函数轮询
@@ -387,7 +387,7 @@ void Oled_Poll(void)
 			bFirstIn = 1;
 		}
 		
-		Oled_bRefresh = OLED_BREFRESH_END;
+		//Oled_bRefresh = OLED_BREFRESH_END;
 	}
 }
 

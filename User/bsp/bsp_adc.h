@@ -14,7 +14,7 @@
 #define ADC_CH2_GAIN	(19.8/4.99+1.0)
 #define ADC_CH3_GAIN	(19.8/4.99+1.0)
 #define ADC_CH4_GAIN	(2.0*10000.0/(100.0+10000.0))
-#define ADC_CH5_GAIN	(19.8/0.56+1.0)
+#define ADC_CH5_GAIN	(19.8/2.7+1.0)
 #define ADC_CH6_GAIN	(19.8/4.99+1.0)
 
 

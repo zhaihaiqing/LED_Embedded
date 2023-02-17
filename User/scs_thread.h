@@ -5,7 +5,7 @@
 
 
 
-
+extern struct rt_semaphore oled_refresh_sem;
 
 
 int scs_thread_init(void);

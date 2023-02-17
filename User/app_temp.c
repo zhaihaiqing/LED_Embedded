@@ -11,7 +11,7 @@ void board_temp_thread_entry(void *par)
 	rt_thread_mdelay(100);
 	
 	while(1)
-	{
+	{		
 		DS18B20_SendConV_Command();	//发送转换命令
 		rt_thread_mdelay(780);		//等待至少750ms后读取数据
 		board_temp=get_DS18B20_TEMP();			//读取数据

@@ -7,7 +7,7 @@ void adc_thread_entry(void *par);
 void get_adc(void);
 void cal_results(void);
 
-void get_20times_adc(void);
+void get_10times_adc(void);
 
 #endif
 

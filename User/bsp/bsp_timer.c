@@ -1,11 +1,11 @@
 
 #include "main.h"
 
-#define TIM2_PSC	3
-#define TIM5_PSC	3
+#define TIM2_PSC	0
+#define TIM5_PSC	0
 
-#define TIM2_PWM_FREQ	250
-#define TIM5_PWM_FREQ	250
+#define TIM2_PWM_FREQ	25000
+#define TIM5_PWM_FREQ	25000
 
 void Timer2_PWM_Init(float Duty)
 {
@@ -236,6 +236,48 @@ void Timer5_PWM_OC2_SetDuty(float Duty)
 }
 
 
+
+
+void Timer6_Init(unsigned short arr,unsigned short psc)
+{
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+	
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM6,ENABLE);  ///使能TIM时钟
+	
+	NVIC_InitStructure.NVIC_IRQChannel=TIM6_DAC_IRQn; //定时器5中断
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=0x01; //抢占优先级
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority=0x02; //子优先级
+	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+	
+	TIM_TimeBaseInitStructure.TIM_Period = arr; 	//自动重装载值
+	TIM_TimeBaseInitStructure.TIM_Prescaler=psc;  	//定时器分频
+	TIM_TimeBaseInitStructure.TIM_CounterMode=TIM_CounterMode_Up; //向上计数模式
+	TIM_TimeBaseInitStructure.TIM_ClockDivision=TIM_CKD_DIV1; 
+	
+	TIM_TimeBaseInit(TIM6,&TIM_TimeBaseInitStructure);//初始化TIM
+	
+	TIM_ITConfig(TIM6,TIM_IT_Update,ENABLE); //允许定时器更新中断
+	TIM_Cmd(TIM6,ENABLE); //使能定时器
+}
+
+
+/********************************************************************
+*	功能	：定时器中断服务程序，2ms进入一次中断
+******************************************************************************/
+void TIM6_DAC_IRQHandler(void)
+{
+	if(TIM6->SR&0X0001)												//TIM溢出中断
+	{
+		
+		//LED_RUN_TOGGLE();
+		
+		rt_sem_release(&cal_adcpid_sem); //释放采样信号量
+		
+		TIM6->SR&=~(1<<0);											//清除TIM中断标志位
+	}
+}
 
 
 

@@ -1,6 +1,6 @@
 #include "main.h"
 
-static double ADC_gain[6]={0};
+static float ADC_gain[6]={0};
 
 void adc_thread_entry(void *par)
 {
@@ -25,7 +25,7 @@ void adc_thread_entry(void *par)
 	{
 //		get_20times_adc();
 //		cal_results();
-		rt_thread_mdelay(20);
+		rt_thread_mdelay(2000);
 	}
 }
 
@@ -38,7 +38,7 @@ void get_adc(void)
 	
 	ADC_RD_H();
 	Start_ADC_ConV(ADC_CONV_ALL);	//转换所有通道
-	//Delay_us(6);					//等待信号量
+	//Delay_us(5);					//等待信号量
 	while(IS_ADC_BUSY())
 	{
 		;
@@ -47,9 +47,9 @@ void get_adc(void)
 	for(i=0;i<6;i++)
 	{
 		ADC_RD_H();
-		__nop();__nop();__nop();__nop();
+		__nop();__nop();
 		ADC_RD_L();
-		__nop();__nop();__nop();__nop();
+		__nop();__nop();
 		adc_value[i] = GPIOD->IDR & 0XFFFF;	//获取ADC数据
 		if((adc_value[i] & 0x8000) != 0x8000)
 		{
@@ -70,13 +70,13 @@ void get_adc(void)
 }
 
 
-void get_20times_adc(void)	//获取20次数据，减去最大最小值，取中间10个数据求平均
+void get_10times_adc(void)	//获取20次数据，减去最大最小值，取中间10个数据求平均
 {
-	float value_A[6][20]={0};
-	double value_b=0;
+	float value_A[6][10]={0};
+	float value_b[6]={0};
 	uint8_t i=0;
 	
-	for(i=0;i<20;i++)
+	for(i=0;i<10;i++)
 	{
 		get_adc();
 		value_A[0][i] = value[0];
@@ -89,50 +89,24 @@ void get_20times_adc(void)	//获取20次数据，减去最大最小值，取中间10个数据求平均
 	
 	for(i=0;i<6;i++)
 	{
-		Bubble_Sort(value_A[i],20,0);
+		Bubble_Sort(value_A[i],10,0);
 	}
 	
-	value_b=0.0;
-	for(i=0;i<10;i++)
+	for(i=0;i<6;i++)
 	{
-		value_b  = value_b+  value_A[0][i+5];
+		value_b[0]  +=  value_A[0][i+2];
+		value_b[1]  +=  value_A[1][i+2];
+		value_b[2]  +=  value_A[2][i+2];
+		value_b[3]  +=  value_A[3][i+2];
+		value_b[4]  +=  value_A[4][i+2];
+		value_b[5]  +=  value_A[5][i+2];
 	}
-	sADCCONVData.Exin_Analog_signal = value_b/10.0;
-	
-	value_b=0.0;
-	for(i=0;i<10;i++)
-	{
-		value_b  = value_b+  value_A[1][i+5];
-	}
-	sADCCONVData.LED2_Current = value_b/10.0;
-	
-	value_b=0.0;
-	for(i=0;i<10;i++)
-	{
-		value_b  = value_b+  value_A[2][i+5];
-	}
-	sADCCONVData.LED2_Temp = value_b/10.0;
-	
-	value_b=0.0;
-	for(i=0;i<10;i++)
-	{
-		value_b  = value_b+  value_A[3][i+5];
-	}
-	sADCCONVData.LED1_Light_Intensity = value_b/10.0;
-	
-	value_b=0.0;
-	for(i=0;i<10;i++)
-	{
-		value_b  = value_b+  value_A[4][i+5];
-	}
-	sADCCONVData.LED1_Current = value_b/10.0;
-	
-	value_b=0.0;
-	for(i=0;i<10;i++)
-	{
-		value_b  = value_b+  value_A[5][i+5];
-	}
-	sADCCONVData.LED1_Temp = value_b/10.0;
+	sADCCONVData.Exin_Analog_signal = 	value_b[0]/6;
+	sADCCONVData.LED2_Current = 		value_b[1]/6;
+	sADCCONVData.LED2_Temp = 			value_b[2]/6;
+	sADCCONVData.LED1_Light_Intensity = value_b[3]/6;
+	sADCCONVData.LED1_Current = 		value_b[4]/6;
+	sADCCONVData.LED1_Temp = 			value_b[5]/6;
 }
 
 

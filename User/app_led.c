@@ -174,20 +174,15 @@ static void set_led1( int argc, char **argv)
 		Set_LED1_Duty(val);
 		
 	}
-	
 }
 MSH_CMD_EXPORT(set_led1,set_led1 Duty);
 
 
 
-
-
-
-
+struct rt_semaphore cal_adcpid_sem;  //创建一个信号量，当收到一次中断时，发送信号量
 
 void mled_thread_entry(void *par)
 {
-	float diff_current=0;
 	//包含LED灯电流控制
 	//亮度控制
 	//温度控制
@@ -195,21 +190,28 @@ void mled_thread_entry(void *par)
 	float led1_current=0,led2_current=0;
 	float adjust_val=0,old_val=0;
 	
+	
 	PID_Parm_init();
+	
+	rt_sem_init(&cal_adcpid_sem, "cal_adcpid_sem", 0, RT_IPC_FLAG_FIFO); //创建信号量
+	
+	Timer6_Init(999,83);	//clk=84M/(psc+1)
 	
 	
 	while(1)
 	{
-		rt_thread_mdelay(4);					//刷新率 200hz
+		//rt_thread_mdelay(2);					//刷新率 
+		rt_sem_control(&cal_adcpid_sem, RT_IPC_CMD_RESET, RT_NULL); //等待前清零信号量，防止误操作
+		rt_sem_take(&cal_adcpid_sem, RT_WAITING_FOREVER);			//持续等待信号量
 		
+		//LED_RUN_ON();	//执行一轮计算，约用时275uS
 		
-		get_20times_adc();
+		get_10times_adc();
 		cal_results();
 		
 		if(extcom_sw_flag == EXTCOM_OFF)		//使用前面板控制参数
 		{
 			//log_info("Use Front parm\r\n");
-			
 			if(feedback_sw_flag == FEEDBACK_OFF)	//使用电流进行反馈
 			{
 				led1_current = FrontPanel_Set_current/100.0;	//使用设置的电流，单位转换为A
@@ -223,27 +225,18 @@ void mled_thread_entry(void *par)
 			}
 			
 			
-			
 			if((led_sw_flag == LEDSW_ON)  && (led1_current >= 0.01))	//如果打开开关，控制灯亮
-			{
-				diff_current = sADCCONVData.LED1_Current - led1_current;
-				
-				
+			{				
 				adjust_val = PID_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
 				
-				log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val);
+				//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val);
 				
-				if(adjust_val - old_val > 1)
+				if( (adjust_val - old_val > 0.25)  || (old_val - adjust_val > 0.25))
 				{			//将调整值转换为占空比的变化量（比例值），计算出新的占空比
-//					float Duty=0;
-//					Duty = adjust_val*84000/10000;	//计算占空比
 					
 					old_val = adjust_val;
-					Set_LED1_Duty(adjust_val);
+					Set_LED1_Duty(adjust_val);//打开LED//控制电流
 				}
-				
-				//打开LED
-				//控制电流
 			}
 			else
 			{	
@@ -251,7 +244,6 @@ void mled_thread_entry(void *par)
 				old_val = 0;
 				Set_LED1_Duty(0);
 			}
-			
 		}
 		else						//使用后面板控制参数
 		{

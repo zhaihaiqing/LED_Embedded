@@ -15,7 +15,7 @@ void Timer5_PWM_OC2_Disable(void);
 void Timer5_PWM_OC2_SetDuty(float Duty);
 
 
-
+void Timer6_Init(unsigned short arr,unsigned short psc);
 
 
 

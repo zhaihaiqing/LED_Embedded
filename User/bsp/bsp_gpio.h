@@ -10,6 +10,7 @@
 
 #define LED_RUN_ON()		GPIOC->BSRRH = GPIO_Pin_4//GPIO_ResetBits(GPIOC,GPIO_Pin_4)
 #define LED_RUN_OFF()		GPIOC->BSRRL = GPIO_Pin_4//GPIO_SetBits(GPIOC,GPIO_Pin_4)
+#define LED_RUN_TOGGLE() 	GPIOC->ODR ^= GPIO_Pin_4
 
 #define LED_OVLD_ON()		GPIO_ResetBits(GPIOA,GPIO_Pin_7)
 #define LED_OVLD_OFF()		GPIO_SetBits(GPIOA,GPIO_Pin_7)
