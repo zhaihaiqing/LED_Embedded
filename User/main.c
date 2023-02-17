@@ -45,6 +45,11 @@ void Init_Devices(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);//中断优先级分组设置
 	Init_SysTick();//开启SysTick定时器
 	
+	while (1)
+	{
+		rt_thread_mdelay(100);
+	}
+	
 	debug_usart_Init();
 	get_rccclock_info();
 	GPIO_Configuration();

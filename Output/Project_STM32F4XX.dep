@@ -1,6 +1,6 @@
 Dependencies for Project 'Project', Target 'STM32F4XX': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
-F (.\User\main.c)(0x63B68586)(-c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+F (.\User\main.c)(0x63EF4CE9)(-c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
 I (User\main.h)(0x63B53A32)
 I (User\stm32f4xx.h)(0x63A18D16)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
