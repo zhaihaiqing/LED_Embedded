@@ -1,7 +1,6 @@
 
 #include "main.h"
 
-
 void GPIO_Configuration(void)
 {
 	GPIO_InitTypeDef        GPIO_InitStructure;
@@ -14,70 +13,91 @@ void GPIO_Configuration(void)
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_12;
+	//LED1
+	GPIO_InitStructure.GPIO_Pin = LED1_GPIO_Pin ;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		//普通输出模式
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
-	GPIO_Init(GPIOA, &GPIO_InitStructure);				//初始化该端口
+	GPIO_Init(LED1_GPIO_Port, &GPIO_InitStructure);		//初始化该端口
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_4;
+	//LED2
+	GPIO_InitStructure.GPIO_Pin = LED2_GPIO_Pin ;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		//普通输出模式
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
-	GPIO_Init(GPIOC, &GPIO_InitStructure);				//初始化该端口
+	GPIO_Init(LED2_GPIO_Port, &GPIO_InitStructure);		//初始化该端口
 	
-	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
+	//WDI
+	GPIO_InitStructure.GPIO_Pin = WDI_GPIO_Pin ;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		//普通输出模式
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
-	GPIO_Init(GPIOE, &GPIO_InitStructure);				//初始化该端口
+	GPIO_Init(WDI_GPIO_Port, &GPIO_InitStructure);		//初始化该端口
 	
+	//LED_RUN
+	GPIO_InitStructure.GPIO_Pin = LED_RUN_GPIO_Pin ;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		//普通输出模式
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
+	GPIO_Init(LED_RUN_GPIO_Port, &GPIO_InitStructure);		//初始化该端口
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+	//LED_OVLD
+	GPIO_InitStructure.GPIO_Pin = LED_OVLD_GPIO_Pin ;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		//普通输出模式
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
+	GPIO_Init(LED_OVLD_GPIO_Port, &GPIO_InitStructure);		//初始化该端口
+	
+	//BEEP
+	GPIO_InitStructure.GPIO_Pin = BEEP_GPIO_Pin ;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		//普通输出模式
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
+	GPIO_Init(BEEP_GPIO_Port, &GPIO_InitStructure);		//初始化该端口
+	
+	//FAN
+	GPIO_InitStructure.GPIO_Pin = FAN_GPIO_Pin ;	
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		//普通输出模式
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
+	GPIO_Init(FAN_GPIO_Port, &GPIO_InitStructure);		//初始化该端口
+
+	GPIO_InitStructure.GPIO_Pin = EXCOM_SW_GPIO_Pin;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;		//普通输出模式
 	//GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
 	//GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
-	GPIO_Init(GPIOA, &GPIO_InitStructure);				//初始化该端口
+	GPIO_Init(EXCOM_SW_GPIO_Port, &GPIO_InitStructure);				//初始化该端口
 	
-	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_4;
+	GPIO_InitStructure.GPIO_Pin = LED_SW_GPIO_Pin;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;		//普通输出模式
 	//GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
 	//GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
-	GPIO_Init(GPIOE, &GPIO_InitStructure);				//初始化该端口
+	GPIO_Init(LED_SW_GPIO_Port, &GPIO_InitStructure);				//初始化该端口
 	
+	GPIO_InitStructure.GPIO_Pin = FB_SW_GPIO_Pin;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;		//普通输出模式
+	//GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
+	//GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
+	GPIO_Init(FB_SW_GPIO_Port, &GPIO_InitStructure);				//初始化该端口
 	
-//	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource6);//
-//	
-//	/* 配置EXTI_Line6 */
-//	EXTI_InitStructure.EXTI_Line = EXTI_Line6;//LINE13
-//	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;//中断事件
-//	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; //上升沿触发一次 
-//	EXTI_InitStructure.EXTI_LineCmd = ENABLE;//使能LINE13
-//	EXTI_Init(&EXTI_InitStructure);//配置
-//	
-//	NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;//外部中断0
-//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x01;//抢占优先级2
-//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;//子优先级2
-//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;//使能外部中断通道
-//	NVIC_Init(&NVIC_InitStructure);//配置
+	GPIO_InitStructure.GPIO_Pin = DIGIN_GPIO_Pin;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;		//普通输出模式
+	//GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
+	//GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
+	GPIO_Init(DIGIN_GPIO_Port, &GPIO_InitStructure);				//初始化该端口
 }
 
-//void EXTI9_5_IRQHandler(void)
-//{
-//	if(EXTI->PR & (1 << 6))	//检测到PA6中断
-//	{
-//		log_info("IO-LIGHT-SEL_CPU\r\n");
-
-//		EXTI->PR |= 1 << 6;
-//	}
-//}
 
 
 

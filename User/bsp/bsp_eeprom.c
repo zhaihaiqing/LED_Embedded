@@ -3,17 +3,16 @@
 
 
 #define EEPROM_ADDR				0x00				//存储位置首地址
-
 #define EEPROM_DEVICE_ADDR		0xA0				//EEPROM I2C器件地址
 
 #define EE_TYPE 				AT24C64		//信号宏定义
 #define EEPROM_PAGESIZE			AT24C64_PAGESIZE   	//AT24C页大小
 
 
-void EE_Init(void)
-{
-	i2c_port_init();
-}
+//void EE_Init(void)
+//{
+//	i2c_port_init();
+//}
 
 
 ///****************************************************
@@ -49,30 +48,35 @@ void EE_Init(void)
 *	参数	：	ReadAddr--开始读数的地址
 *	返回	：	读到的数据
 ********************************************************************************************/
-uint8_t EE_ReadOneByte(uint16_t addr)
+uint8_t EE_ReadS(uint16_t addr,uint8_t *pBuffer,uint16_t Length)
 {				  
+	unsigned int timeout=0;
 	u8 temp=0;
+	
+	if(Length == 0) return 1;	//长度为0则直接返回
 	rt_enter_critical();
-    i2c_port_start();
-	if(EE_TYPE>AT24C16)
-	{
-		i2c_port_send_byte(EEPROM_DEVICE_ADDR);				//发送器件地址
-		i2c_port_wait_ack();
-		i2c_port_send_byte( (addr & 0xff00) >>8);			//发送高地址	    
-	}
-	else
-	{
-		i2c_port_send_byte( EEPROM_DEVICE_ADDR+( ((addr & 0xff00) )<<1) );		//发送器件地址,写数据 	 
-	}		
+	
+    i2cb_port_start();
+//	if(EE_TYPE>AT24C16)
+//	{
+	i2cb_port_send_byte(EEPROM_DEVICE_ADDR & 0xfe);				//发送器件地址
+	i2cb_port_wait_ack();
+	i2cb_port_send_byte( (uint8_t)((addr & 0xff00) >>8));			//发送高地址	    
+//	}
+//	else
+//	{
+//		i2cb_port_send_byte( EEPROM_DEVICE_ADDR & 0xfe);		//发送器件地址,写数据 	 
+//	}		
 		  
-	i2c_port_wait_ack(); 
-    i2c_port_send_byte(addr & 0x00ff);						//发送低地址
-	i2c_port_wait_ack();
-	i2c_port_start();
-	i2c_port_send_byte(EEPROM_DEVICE_ADDR | 0x01);								//进入接收模式
-	i2c_port_wait_ack();
-    temp=i2c_port_read_byte(0);
-    i2c_port_stop();											//产生一个停止条件
+	i2cb_port_wait_ack(); 
+    i2cb_port_send_byte((uint8_t)(addr & 0x00ff));						//发送低地址
+	i2cb_port_wait_ack();
+	
+	i2cb_port_start();
+	i2cb_port_send_byte(EEPROM_DEVICE_ADDR | 0x01);								//进入接收模式
+	i2cb_port_wait_ack();
+    temp=i2cb_port_read_byte();
+    i2cb_port_stop();											//产生一个停止条件
 	rt_exit_critical();
 	return temp;
 }
@@ -86,24 +90,26 @@ uint8_t EE_ReadOneByte(uint16_t addr)
 void EE_WriteOneByte(uint16_t addr,uint8_t data)
 {			
 	rt_enter_critical();
-    i2c_port_start();  
+	
+    i2cb_port_start(); 
 	if(EE_TYPE>AT24C16)
 	{
-		i2c_port_send_byte(EEPROM_DEVICE_ADDR);			//发送器件地址
-		i2c_port_wait_ack();
-		i2c_port_send_byte((addr & 0xff00) >>8);		//发送高地址	  
+		i2cb_port_send_byte(EEPROM_DEVICE_ADDR & 0xfe);			//发送器件地址
+		i2cb_port_wait_ack();
+		i2cb_port_send_byte((uint8_t)((addr & 0xff00) >>8));		//发送高地址	  
 	}
 	else
 	{
-		i2c_port_send_byte(EEPROM_DEVICE_ADDR+( ((addr & 0xff00) )<<1));		//发送器件地址0XA0,写数据 
+		i2cb_port_send_byte(EEPROM_DEVICE_ADDR & 0xfe);		//发送器件地址0XA0,写数据 
 	}		
 			 
-	i2c_port_wait_ack();	   
-    i2c_port_send_byte(addr & 0x00ff);					//发送低地址
-	i2c_port_wait_ack(); 	 										  		   
-	i2c_port_send_byte(data);							//发送字节							   
-	i2c_port_wait_ack();  		    	   
-    i2c_port_stop();									//产生一个停止条件
+	i2cb_port_wait_ack();	   
+    i2cb_port_send_byte((uint8_t)(addr & 0x00ff));					//发送低地址
+	i2cb_port_wait_ack(); 	
+	
+	i2cb_port_send_byte(data);							//发送字节							   
+	i2cb_port_wait_ack();  		    	   
+    i2cb_port_stop();									//产生一个停止条件
 	rt_exit_critical();
 } 
 

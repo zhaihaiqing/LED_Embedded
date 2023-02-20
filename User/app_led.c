@@ -1,6 +1,17 @@
 #include "main.h"
 
+//#define PID_KP	20
+//#define PID_KI	2
+//#define PID_KD	0
+
+#define PID_KP	30
+#define PID_KI	2
+#define PID_KD	1
+
+
+
 sPID_t PID 				= 	{0};
+
 
 
 /*			PID设置过程
@@ -13,15 +24,16 @@ sPID_t PID 				= 	{0};
 
 */
 
+
 //初始化PID参数
 void PID_Parm_init(void)
 {
 	PID.err = 0;//误差值
 	PID.err_n1 = 0;			//n-1误差值
 	PID.err_n2 = 0;			//n-2误差值
-	PID.Kp = 20;
-	PID.Ki = 2;
-	PID.Kd = 0;
+	PID.Kp = PID_KP;
+	PID.Ki = PID_KI;
+	PID.Kd = PID_KD;
 	PID.Incerr = 0;
 	PID.UK = 0;
 	
@@ -195,7 +207,7 @@ void mled_thread_entry(void *par)
 	
 	rt_sem_init(&cal_adcpid_sem, "cal_adcpid_sem", 0, RT_IPC_FLAG_FIFO); //创建信号量
 	
-	Timer6_Init(999,83);	//clk=84M/(psc+1)
+	Timer6_Init(3999,20);	//clk=84M/(psc+1)	0.25us,
 	
 	
 	while(1)
@@ -266,17 +278,7 @@ void mled_thread_entry(void *par)
 			//下降沿关闭LED
 			
 			
-			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 	

@@ -56,6 +56,7 @@
 .\output\sys.o: .\User\bsp\bsp_temp.h
 .\output\sys.o: .\User\bsp\bsp_adc.h
 .\output\sys.o: .\User\bsp\bsp_iadc.h
+.\output\sys.o: .\User\bsp\bsp_i2c.h
 .\output\sys.o: .\User\bsp\bsp_i2c_port.h
 .\output\sys.o: .\User\bsp\bsp_oled.h
 .\output\sys.o: .\User\bsp\bsp_codec.h

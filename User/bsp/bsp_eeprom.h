@@ -32,8 +32,12 @@
 
 
 
-void EE_Init(void);
-uint8_t EE_ReadOneByte(uint16_t addr);
+//void EE_Init(void);
+//uint8_t EE_ReadOneByte(uint16_t addr);
+//void EE_WriteOneByte(uint16_t addr,uint8_t data);
+
+
+uint8_t EE_ReadS(uint16_t addr,uint8_t *pBuffer,uint16_t Length);
 void EE_WriteOneByte(uint16_t addr,uint8_t data);
 
 

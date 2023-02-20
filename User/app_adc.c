@@ -1,6 +1,6 @@
 #include "main.h"
 
-static float ADC_gain[6]={0};
+//static float ADC_gain[6]={0};
 
 void adc_thread_entry(void *par)
 {
@@ -9,12 +9,12 @@ void adc_thread_entry(void *par)
 	//开启外部中断
 	//创建信号量
 	rt_thread_mdelay(100);
-	ADC_gain[0] = ADC_CH1_GAIN;
-	ADC_gain[1] = ADC_CH2_GAIN;
-	ADC_gain[2] = ADC_CH3_GAIN;
-	ADC_gain[3] = ADC_CH4_GAIN;
-	ADC_gain[4] = ADC_CH5_GAIN;
-	ADC_gain[5] = ADC_CH6_GAIN;
+//	ADC_gain[0] = ADC_CH1_GAIN;
+//	ADC_gain[1] = ADC_CH2_GAIN;
+//	ADC_gain[2] = ADC_CH3_GAIN;
+//	ADC_gain[3] = ADC_CH4_GAIN;
+//	ADC_gain[4] = ADC_CH5_GAIN;
+//	ADC_gain[5] = ADC_CH6_GAIN;
 	
 	get_adc();		//提前转换两次，避免经未转换的数据进入计算
 	rt_thread_mdelay(10);
@@ -23,12 +23,20 @@ void adc_thread_entry(void *par)
 	
 	while(1)
 	{
-//		get_20times_adc();
-//		cal_results();
+		//get_10times_adc();
+		//cal_results();
 		rt_thread_mdelay(2000);
 	}
 }
 
+/*
+ADC ch1---->LED2_Current
+ADC ch2---->LED1_Current
+ADC ch3---->LED2_Temp
+ADC ch4---->LED1_Temp
+ADC ch5---->Light_intensity
+ADC ch6---->Analog_Input
+*/
 
 static float value[6]={0};
 void get_adc(void)
@@ -59,7 +67,7 @@ void get_adc(void)
 		{
 			value[i] = 0-((float)(0xffff - adc_value[i])) * ADC_RANGE / 0x7fff;
 		}
-		value[i] = value[i]/ADC_gain[i];
+		//value[i] = value[i]/ADC_gain[i];
 	}
 	
 	//rt_memcpy((void *)&sADCCONVData,value,sizeof(value));
@@ -101,12 +109,30 @@ void get_10times_adc(void)	//获取20次数据，减去最大最小值，取中间10个数据求平均
 		value_b[4]  +=  value_A[4][i+2];
 		value_b[5]  +=  value_A[5][i+2];
 	}
-	sADCCONVData.Exin_Analog_signal = 	value_b[0]/6;
-	sADCCONVData.LED2_Current = 		value_b[1]/6;
+	
+	/*
+ADC ch0---->LED2_Current
+ADC ch1---->LED1_Current
+ADC ch2---->LED2_Temp
+ADC ch3---->LED1_Temp
+ADC ch4---->Light_intensity
+ADC ch5---->Analog_Input
+*/
+	
+	sADCCONVData.Exin_Analog_signal = 	value_b[5]/6;
+	sADCCONVData.LED2_Current = 		value_b[0]/6;
 	sADCCONVData.LED2_Temp = 			value_b[2]/6;
-	sADCCONVData.LED1_Light_Intensity = value_b[3]/6;
-	sADCCONVData.LED1_Current = 		value_b[4]/6;
-	sADCCONVData.LED1_Temp = 			value_b[5]/6;
+	sADCCONVData.LED1_Light_Intensity = value_b[4]/6;
+	sADCCONVData.LED1_Current = 		value_b[1]/6;
+	sADCCONVData.LED1_Temp = 			value_b[3]/6;
+	
+	
+	sADCCONVData.Exin_Analog_signal = 	sADCCONVData.Exin_Analog_signal/Analog_Input_Gain;
+	sADCCONVData.LED2_Current = 		sADCCONVData.LED2_Current/LED2_Current_Gain;
+	sADCCONVData.LED2_Temp = 			sADCCONVData.LED2_Temp/LED2_Temp_Gain;
+	sADCCONVData.LED1_Light_Intensity = sADCCONVData.LED1_Light_Intensity/Light_intensity_Gain;
+	sADCCONVData.LED1_Current = 		sADCCONVData.LED1_Current/LED1_Current_Gain;
+	sADCCONVData.LED1_Temp = 			sADCCONVData.LED1_Temp/LED1_Temp_Gain;
 }
 
 

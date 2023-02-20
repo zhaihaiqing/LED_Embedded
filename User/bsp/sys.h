@@ -65,6 +65,30 @@
 #define PIout(n)   BIT_ADDR(GPIOI_ODR_Addr,n)  //输出 
 #define PIin(n)    BIT_ADDR(GPIOI_IDR_Addr,n)  //输入
 
+
+
+
+
+
+typedef enum{
+	STM32F0,
+	STM32F1,
+	STM32F2,
+	STM32F3,
+	STM32F4,
+	STM32F7,
+	STM32L0,
+	STM32L1,
+	STM32L4,
+	STM32H7,
+}MCUTypedef;
+
+
+
+
+
+
+
 //以下为汇编函数
 void WFI_SET(void);		//执行WFI指令
 void INTX_DISABLE(void);//关闭所有中断

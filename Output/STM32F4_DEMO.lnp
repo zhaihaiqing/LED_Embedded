@@ -14,6 +14,7 @@
 ".\output\bsp_temp.o"
 ".\output\bsp_adc.o"
 ".\output\bsp_iadc.o"
+".\output\bsp_i2c.o"
 ".\output\bsp_i2c_port.o"
 ".\output\bsp_oled.o"
 ".\output\bsp_codec.o"
@@ -85,7 +86,7 @@
 ".\output\finsh_port.o"
 ".\output\msh.o"
 ".\output\shell.o"
---strict --scatter ".\Output\STM32F4_DEMO.sct"
+--library_type=microlib --strict --scatter ".\Output\STM32F4_DEMO.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\STM32F4_DEMO.map" -o .\Output\STM32F4_DEMO.axf

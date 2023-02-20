@@ -365,9 +365,9 @@ ARM Macro Assembler    Page 6
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
 interwork --depend=.\output\context_rvds.d -o.\output\context_rvds.o -IC:\Keil_
 v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include -I
-C:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0 --predefine="__UVISION_VERSION SETA 
-536" --predefine="STM32F407xx SETA 1" --list=.\listings\context_rvds.lst Rtt_na
-no\context_rvds.S
+C:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0 --predefine="__MICROLIB SETA 1" --pr
+edefine="__UVISION_VERSION SETA 536" --predefine="STM32F407xx SETA 1" --list=.\
+listings\context_rvds.lst Rtt_nano\context_rvds.S
 
 
 
@@ -571,4 +571,4 @@ Symbol: rt_thread_switch_interrupt_flag
       At line 185 in file Rtt_nano\context_rvds.S
 
 4 symbols
-356 symbols in table
+357 symbols in table

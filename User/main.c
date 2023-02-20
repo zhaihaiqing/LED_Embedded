@@ -45,19 +45,14 @@ void Init_Devices(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);//中断优先级分组设置
 	Init_SysTick();//开启SysTick定时器
 	
-	while (1)
-	{
-		rt_thread_mdelay(100);
-	}
-	
-	debug_usart_Init();
 	get_rccclock_info();
+	
 	GPIO_Configuration();
 	
-	DQ_Temp_Init();
+	//DQ_Temp_Init();
 	ADC_GPIO_Configuration();
-	
-	EE_Init();
+	i2cb_port_init();
+	//EE_Init();
 	
 	
 }
@@ -73,42 +68,49 @@ void Init_Devices(void)
 
 uint32_t dqt=500;
 uint8_t test=0;
+
 int main(void)
 {
 	float duty=0;
+	uint8_t test=0;
 	Init_Devices();
-	
 	
 	scs_thread_init();
 	
 	rt_thread_mdelay(100);
 	
-	test=EE_ReadOneByte(0x01);
-	log_info("test:0x%x\r\n",test);
 	
-	EE_WriteOneByte(0x01,0x55);
-	rt_thread_mdelay(5);
-	
-	test=0;
-	test=EE_ReadOneByte(0x01);
-	log_info("test:0x%x\r\n",test);
-	
-	
-	test=EE_ReadOneByte(0x01);
-	log_info("test:0x%x\r\n",test);
-	
-	EE_WriteOneByte(0x01,0x55);
-	rt_thread_mdelay(5);
-	
-	test=0;
-	test=EE_ReadOneByte(0x01);
-	log_info("test:0x%x\r\n",test);
+//	test=EE_ReadS(0x00,&test,1);
+//	log_info("test:0x%x\r\n",test);
+//	rt_thread_mdelay(100);
+////	
+//	EE_WriteOneByte(0x00,0x55);
+//	rt_thread_mdelay(100);
+////	
+//	test=0;
+//	test=EE_ReadS(0x00,&test,1);
+//	log_info("test:0x%x\r\n",test);
+//	
+//	test=0;
+//	test=EE_ReadS(0x00,&test,1);
+//	log_info("test:0x%x\r\n",test);
+//	
+//	
+//	test=EE_ReadOneByte(0x01);
+//	log_info("test:0x%x\r\n",test);
+//	
+//	EE_WriteOneByte(0x01,0x55);
+//	rt_thread_mdelay(5);
+//	
+//	test=0;
+//	test=EE_ReadOneByte(0x01);
+//	log_info("test:0x%x\r\n",test);
 	
 	
 	{
 		float duty=0;
 		
-		duty = 90;
+		duty = 2;
 		
 		Timer2_PWM_Init(duty);
 		Timer5_PWM_Init(duty);
@@ -123,44 +125,56 @@ int main(void)
 	
 	while (1)
 	{
-		//pLED0_ON();
-		//rt_thread_mdelay(100);
-		//pLED0_OFF();
-		//GPIO_SetBits(GPIOA,GPIO_Pin_12);
-		
-		
-//		__set_PRIMASK(1);
-//		
-//		Delay_us(dqt);
-//		LED_RUN_ON();
-//		Delay_us(dqt);
-//		LED_RUN_OFF();
-//		Delay_us(dqt);
-//		LED_RUN_ON();
-//		Delay_us(dqt);
-//		LED_RUN_OFF();
-//		Delay_us(dqt);
-//		LED_RUN_ON();
-//		Delay_us(dqt);
-//		LED_RUN_OFF();
-//		__set_PRIMASK(0);
-		
-		
-		//DS18B20_TEMP();
 		WDI_FD();
+		LED1_ON();
+		LED2_ON();
+		rt_thread_mdelay(100);
+			
+		LED1_OFF();
+		LED2_OFF();
 		rt_thread_mdelay(100);
 		
-//		duty = duty+5;
-//		
-//		if(duty>100)duty=0;
-//		
-//		Timer2_PWM_OC3_SetDuty(duty);
-//		Timer5_PWM_OC2_SetDuty(duty);
 		
 		
-//		GPIO_ResetBits(GPIOE,GPIO_Pin_5);
-//		rt_thread_mdelay(5);
-//		GPIO_SetBits(GPIOE,GPIO_Pin_5);
+		test=0;
+		test=EE_ReadS(0x00,&test,1);
+		log_info("test:0x%x\r\n",test);
+		rt_thread_mdelay(100);
+		
+		test=0;
+		test=EE_ReadS(0x01,&test,1);
+		log_info("test:0x%x\r\n",test);
+		rt_thread_mdelay(100);
+		
+		test=0;
+		test=EE_ReadS(0x02,&test,1);
+		log_info("test:0x%x\r\n",test);
+		rt_thread_mdelay(100);
+//	//	
+		EE_WriteOneByte(0x01,0x55);
+		rt_thread_mdelay(100);
+//	//	
+		test=0;
+		test=EE_ReadS(0x01,&test,1);
+		log_info("test:0x%x\r\n\r\n",test);
+//		
+		rt_thread_mdelay(100);
+		test=0;
+		test=EE_ReadS(0x01,&test,1);
+		log_info("test:0x%x\r\n",test);
+		
+		rt_thread_mdelay(100);
+		//log_info("CheckDevice EEPROM:0x%x\r\n",i2cb_CheckDevice(0xA0));
+		rt_thread_mdelay(100);
+		//log_info("CheckDevice TempA:0x%x\r\n",i2cb_CheckDevice(TEMP_A_ADDR));
+		rt_thread_mdelay(100);
+		//log_info("CheckDevice TempB:0x%x\r\n",i2cb_CheckDevice(TEMP_B_ADDR));
+		rt_thread_mdelay(100);
+		
+		GetTempValue(TEMP_A_ADDR);
+		GetTempValue(TEMP_B_ADDR);
+	
+
 		
 	}
 }

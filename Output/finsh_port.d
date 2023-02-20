@@ -57,6 +57,7 @@
 .\output\finsh_port.o: .\User\bsp\bsp_temp.h
 .\output\finsh_port.o: .\User\bsp\bsp_adc.h
 .\output\finsh_port.o: .\User\bsp\bsp_iadc.h
+.\output\finsh_port.o: .\User\bsp\bsp_i2c.h
 .\output\finsh_port.o: .\User\bsp\bsp_i2c_port.h
 .\output\finsh_port.o: .\User\bsp\bsp_oled.h
 .\output\finsh_port.o: .\User\bsp\bsp_codec.h

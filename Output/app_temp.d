@@ -56,6 +56,7 @@
 .\output\app_temp.o: .\User\bsp\bsp_temp.h
 .\output\app_temp.o: .\User\bsp\bsp_adc.h
 .\output\app_temp.o: .\User\bsp\bsp_iadc.h
+.\output\app_temp.o: .\User\bsp\bsp_i2c.h
 .\output\app_temp.o: .\User\bsp\bsp_i2c_port.h
 .\output\app_temp.o: .\User\bsp\bsp_oled.h
 .\output\app_temp.o: .\User\bsp\bsp_codec.h

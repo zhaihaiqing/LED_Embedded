@@ -2,8 +2,6 @@
 #ifndef __BSP_TEMP_H
 #define __BSP_TEMP_H
 
-
-
 //DS18B20数据线   PE6
 #define DQ_OUT_H					GPIOE->BSRRL = GPIO_Pin_6
 #define DQ_OUT_L					GPIOE->BSRRH = GPIO_Pin_6
@@ -25,12 +23,26 @@
 							  //设置输出速度为100MHz
 							  //设置上拉
 							  
-							  
+
+
+#define TEMP_A_ADDR		0x90
+#define TEMP_B_ADDR		0x92
+
+#define LM75_REG_TEMP        0x00
+
+
+
+
+
+
 void DS18B20_delayus(unsigned int us);
 void DS18B20_ReadROM(void);
 void DQ_Temp_Init(void);
 float DS18B20_SendConV_Command(void);
 float get_DS18B20_TEMP(void);
+
+
+float GetTempValue(uint8_t addr);
 
 #endif 
 

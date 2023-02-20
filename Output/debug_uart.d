@@ -56,6 +56,7 @@
 .\output\debug_uart.o: .\User\bsp\bsp_temp.h
 .\output\debug_uart.o: .\User\bsp\bsp_adc.h
 .\output\debug_uart.o: .\User\bsp\bsp_iadc.h
+.\output\debug_uart.o: .\User\bsp\bsp_i2c.h
 .\output\debug_uart.o: .\User\bsp\bsp_i2c_port.h
 .\output\debug_uart.o: .\User\bsp\bsp_oled.h
 .\output\debug_uart.o: .\User\bsp\bsp_codec.h

@@ -16,7 +16,7 @@
 #endif
 
 
-#define LOG_USART			USART1
+#define LOG_USART			USART6
 #define LOG_USART_BPS   	115200
 
 

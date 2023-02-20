@@ -99,7 +99,70 @@ void get_rccclock_info(void)
 	
 }
 
+void MCU_RESET_Log(void)
+{
+	if(RCC_GetFlagStatus(RCC_FLAG_PORRST) != RESET)
+	{
+		log_info("RCC_FLAG_PORRST\r\n");
+	}
+	if(RCC_GetFlagStatus(RCC_FLAG_PINRST) != RESET)
+	{
+		log_info("RCC_FLAG_PINRST\r\n");
+	}
+	if(RCC_GetFlagStatus(RCC_FLAG_SFTRST) != RESET)
+	{
+		log_info("RCC_FLAG_SFTRST\r\n");
+	}
+	if(RCC_GetFlagStatus(RCC_FLAG_IWDGRST) != RESET)
+	{
+		log_info("RCC_FLAG_IWDGRST\r\n");
+	}
+	if(RCC_GetFlagStatus(RCC_FLAG_WWDGRST) != RESET)
+	{
+		log_info("RCC_FLAG_WWDGRST\r\n");
+	}
+	if(RCC_GetFlagStatus(RCC_FLAG_LPWRRST) != RESET)
+	{
+		log_info("RCC_FLAG_LPWRRST\r\n");
+	}
+	if(RCC_GetFlagStatus(RCC_FLAG_BORRST) != RESET)
+	{
+		log_info("RCC_FLAG_BORRST\r\n");
+	}
+	RCC_ClearFlag();	//清除中断复位标志
+}
 
+uint32_t MCU_idAddr[]=
+{
+	0x1FFFF7AC,		/*STM32F0唯一ID起始地址*/
+	0x1FFFF7E8,		/*STM32F1唯一ID起始地址*/
+	0x1FFF7A10,		/*STM32F2唯一ID起始地址*/
+	0x1FFFF7AC,		/*STM32F3唯一ID起始地址*/
+	0x1FFF7A10,		/*STM32F4唯一ID起始地址*/
+	0x1FF0F420,		/*STM32F7唯一ID起始地址*/
+	0x1FF80050,		/*STM32L0唯一ID起始地址*/
+	0x1FF80050,		/*STM32L1唯一ID起始地址*/
+	0x1FFF7590,		/*STM32L4唯一ID起始地址*/
+	0x1FF0F420		/*STM32H7唯一ID起始地址*/
+};
+
+void get_MCU_Type(MCUTypedef type)
+{
+	uint32_t id[3]={0};
+	uint32_t id1[3]={0};
+	id[0] = (uint32_t)DBGMCU->IDCODE & DBGMCU_IDCODE_DEV_ID;
+	
+	log_info("MCU id[0]:0x%x\r\n",id[0]);
+	
+	id[0]=*(uint32_t*)(MCU_idAddr[type]);
+	id[1]=*(uint32_t*)(MCU_idAddr[type]+4);
+	id[2]=*(uint32_t*)(MCU_idAddr[type]+8);
+	
+	log_info("MCU id1[0]:0x%x\r\n",id1[0]);
+	log_info("MCU id1[1]:0x%x\r\n",id1[1]);
+	log_info("MCU id1[2]:0x%x\r\n",id1[2]);
+	
+}
 
 /*******************************************************************************
 
@@ -143,7 +206,31 @@ void Bubble_Sort(float *pa,unsigned int len, unsigned char f)
 
 
 
+/*******************************************************************************
+* Function Name  : CRC16_Check
+* Description    : CRC校验
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+uint16_t CRC16_Check(uint8_t *Pushdata,uint8_t length)
+{
+	uint16_t Reg_CRC=0xffff;
+	uint8_t i,j;
+	for( i = 0; i<length; i ++)
+	{
+		Reg_CRC^= *Pushdata++;
+		for (j = 0; j<8; j++)
+		{
+			if (Reg_CRC & 0x0001)
 
+			Reg_CRC=Reg_CRC>>1^0xA001;
+			else
+			Reg_CRC >>=1;
+		}
+	}
+	return   Reg_CRC;
+}
 
 
 
