@@ -227,24 +227,26 @@ short Read_TMP75_Byte(unsigned char SLAVE_Device_Addr,unsigned char Reg_Addr)
 	
     i2cb_port_start();
 	
-	i2cb_port_send_byte( SLAVE_Device_Addr & 0xfe);		//发送器件地址,写数据 	 
-			
-		  
+	i2cb_port_send_byte( SLAVE_Device_Addr);		//发送器件地址,写数据 	 
+	  
 	i2cb_port_wait_ack(); 
     i2cb_port_send_byte(Reg_Addr);						//发送低地址
 	i2cb_port_wait_ack();
 	
 	i2cb_port_start();
-	i2cb_port_send_byte(SLAVE_Device_Addr | 0x01);								//进入接收模式
+	i2cb_port_send_byte(SLAVE_Device_Addr | 0x01);				//进入接收模式
 	i2cb_port_wait_ack();
     msb=i2cb_port_read_byte();
-    i2cb_port_stop();											//产生一个停止条件
+    i2cb_port_wait_ack();											//产生一个停止条件
 	lsb=i2cb_port_read_byte();
+	i2cb_port_wait_ack();
+	i2cb_port_stop();
+	
 	rt_exit_critical();
 	
 	Reg_Value = (msb<<8) | lsb;
 	
-	log_info("temp:msb:0x%x,lsb:0x%x\r\n",msb,lsb);
+	//log_info("temp:msb:0x%x,lsb:0x%x\r\n",msb,lsb);
 	
 	return Reg_Value;
 }
@@ -271,7 +273,7 @@ float GetTempValue(uint8_t addr)
 //	log_info("LM75_Result:0x%x\r\n",Result);
 //	log_info("LM75_temp:%.1f℃\r\n",Temp);
 //	
-	log_info("temp:%f\r\n",Temp);
+	//log_info("addr:0x%x,temp:%f\r\n",addr,Temp);
 	return Temp;
 }
 

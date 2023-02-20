@@ -19,7 +19,7 @@ void oled_i2c_port_init(void)
 	//GPIOE11,E10初始化设置
 	GPIO_InitStructure.GPIO_Pin = I2CA_SCL_GPIO_Pin;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;//普通输出模式
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//推挽输出
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;//推挽输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;//100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//上拉
 	GPIO_Init(I2CA_SCL_GPIO_PORT, &GPIO_InitStructure);//初始化
@@ -27,7 +27,7 @@ void oled_i2c_port_init(void)
 	//GPIOE11,E10初始化设置
 	GPIO_InitStructure.GPIO_Pin = I2CA_SDA_GPIO_Pin;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;//普通输出模式
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//推挽输出
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;//推挽输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;//100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//上拉
 	GPIO_Init(I2CA_SDA_GPIO_PORT, &GPIO_InitStructure);//初始化
@@ -220,7 +220,7 @@ void i2cb_port_init(void)
 	//GPIOE11,E10初始化设置
 	GPIO_InitStructure.GPIO_Pin = I2CB_SCL_GPIO_Pin;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;//普通输出模式
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//推挽输出
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;//开漏输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;//100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//上拉
 	GPIO_Init(I2CB_SCL_GPIO_PORT, &GPIO_InitStructure);//初始化
@@ -228,7 +228,7 @@ void i2cb_port_init(void)
 	//GPIOE11,E10初始化设置
 	GPIO_InitStructure.GPIO_Pin = I2CB_SDA_GPIO_Pin;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;//普通输出模式
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//推挽输出
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;//开漏输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;//100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//上拉
 	GPIO_Init(I2CB_SDA_GPIO_PORT, &GPIO_InitStructure);//初始化
@@ -259,7 +259,7 @@ static void i2cb_port_delay(void)
 
 		实际应用选择400KHz左右的速率即可
 	*/
-	for (i = 0; i < 150; i++);
+	for (i = 0; i < 28; i++);
 }
 
 //产生IIC起始信号
@@ -298,13 +298,13 @@ unsigned char i2cb_port_wait_ack(void)
 //	while( I2CB_SDA_READ() )
 //	{
 //		times++;
-//		__nop();
-//		if(times>250)
+//		if(times>100)
 //		{
 //			i2cb_port_stop();
 //			return 1;
 //		}
 //	}
+	
 	if( I2CB_SDA_READ() )
 	{
 		re=1;
@@ -347,6 +347,8 @@ void i2cb_port_send_byte(unsigned char txd)
 {                        
     unsigned char t;
 	
+	I2CB_SCL_0();
+	
 	for(t=0;t<8;t++)
 	{
 		if(txd & 0x80)
@@ -357,15 +359,11 @@ void i2cb_port_send_byte(unsigned char txd)
 		{
 			I2CB_SDA_0();
 		}
+		txd <<= 1;
 		i2cb_port_delay();
 		I2CB_SCL_1();
 		i2cb_port_delay();
-		I2CB_SCL_0();	
-//		if(t == 7)
-//		{
-//			I2CB_SDA_1();
-//		}
-		txd <<= 1;
+		I2CB_SCL_0();			
 		i2cb_port_delay();
 	}
 	
@@ -378,15 +376,32 @@ unsigned char i2cb_port_read_byte(void)
 	
 	for(i=0;i<8;i++)
 	{
-		receive <<= 1;
 		I2CB_SCL_1();
 		i2cb_port_delay();
+		receive <<= 1;
 		if( I2CB_SDA_READ() ) receive++;
 		I2CB_SCL_0();
 		i2cb_port_delay();
 	}
+//	if(!ack)
+//	{
+//		i2cb_port_nack();
+//	}
+//	else
+//	{
+//		i2cb_port_ack();
+//	}
+			
 	return receive;
 }
+
+
+
+
+
+
+
+
 
 /*
 *********************************************************************************************************

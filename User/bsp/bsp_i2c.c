@@ -126,6 +126,7 @@ uint8_t I2C1_readS(uint8_t device_addr , uint8_t reg_addr , uint8_t * px, uint16
   }
   //再次允许应答模式
   I2C_AcknowledgeConfig(I2C1, ENABLE);
+  return 0;
 }	
 
 uint8_t I2C1_writeS(uint8_t device_addr , uint8_t reg_addr , uint8_t * px, uint16_t len)

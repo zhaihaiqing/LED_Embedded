@@ -67,45 +67,17 @@ void Init_Devices(void)
 
 
 uint32_t dqt=500;
-uint8_t test=0;
+
 
 int main(void)
 {
 	float duty=0;
-	uint8_t test=0;
+	uint8_t test[10]={0},i=0;
 	Init_Devices();
 	
 	scs_thread_init();
 	
 	rt_thread_mdelay(100);
-	
-	
-//	test=EE_ReadS(0x00,&test,1);
-//	log_info("test:0x%x\r\n",test);
-//	rt_thread_mdelay(100);
-////	
-//	EE_WriteOneByte(0x00,0x55);
-//	rt_thread_mdelay(100);
-////	
-//	test=0;
-//	test=EE_ReadS(0x00,&test,1);
-//	log_info("test:0x%x\r\n",test);
-//	
-//	test=0;
-//	test=EE_ReadS(0x00,&test,1);
-//	log_info("test:0x%x\r\n",test);
-//	
-//	
-//	test=EE_ReadOneByte(0x01);
-//	log_info("test:0x%x\r\n",test);
-//	
-//	EE_WriteOneByte(0x01,0x55);
-//	rt_thread_mdelay(5);
-//	
-//	test=0;
-//	test=EE_ReadOneByte(0x01);
-//	log_info("test:0x%x\r\n",test);
-	
 	
 	{
 		float duty=0;
@@ -123,6 +95,8 @@ int main(void)
 	
 	
 	
+	
+	
 	while (1)
 	{
 		WDI_FD();
@@ -135,44 +109,58 @@ int main(void)
 		rt_thread_mdelay(100);
 		
 		
+		EE_ReadS(0x00,test,10);
+		log_info("test Read ");
+		for(i=0;i<10;i++)
+		{
+			log_info("0x%x ",test[i]);
+		}
+		log_info("\r\n\r\n");
+		rt_thread_mdelay(200);
+
 		
-		test=0;
-		test=EE_ReadS(0x00,&test,1);
-		log_info("test:0x%x\r\n",test);
-		rt_thread_mdelay(100);
 		
-		test=0;
-		test=EE_ReadS(0x01,&test,1);
-		log_info("test:0x%x\r\n",test);
-		rt_thread_mdelay(100);
+		for(i=0;i<10;i++)
+		{
+			test[i] = 0x55+i;
+			EE_WriteOneByte(0x00+i,test[i]);
+		}
+		rt_thread_mdelay(200);
 		
-		test=0;
-		test=EE_ReadS(0x02,&test,1);
-		log_info("test:0x%x\r\n",test);
-		rt_thread_mdelay(100);
-//	//	
-		EE_WriteOneByte(0x01,0x55);
-		rt_thread_mdelay(100);
-//	//	
-		test=0;
-		test=EE_ReadS(0x01,&test,1);
-		log_info("test:0x%x\r\n\r\n",test);
-//		
-		rt_thread_mdelay(100);
-		test=0;
-		test=EE_ReadS(0x01,&test,1);
-		log_info("test:0x%x\r\n",test);
 		
-		rt_thread_mdelay(100);
-		//log_info("CheckDevice EEPROM:0x%x\r\n",i2cb_CheckDevice(0xA0));
-		rt_thread_mdelay(100);
-		//log_info("CheckDevice TempA:0x%x\r\n",i2cb_CheckDevice(TEMP_A_ADDR));
-		rt_thread_mdelay(100);
-		//log_info("CheckDevice TempB:0x%x\r\n",i2cb_CheckDevice(TEMP_B_ADDR));
-		rt_thread_mdelay(100);
+		memset(test,0,sizeof(test));
+		EE_ReadS(0x00,test,10);
+		log_info("test Read ");
+		for(i=0;i<10;i++)
+		{
+			log_info("0x%x ",test[i]);
+		}
+		log_info("\r\n\r\n");
+		rt_thread_mdelay(200);
 		
-		GetTempValue(TEMP_A_ADDR);
-		GetTempValue(TEMP_B_ADDR);
+////		
+//////	//	
+//		EE_WriteOneByte(0x01,0x55);
+//		rt_thread_mdelay(100);
+//////	//	
+//		test=0;
+//		test=EE_ReadS(0x01,&test,1);
+//		log_info("test:0x%x\r\n\r\n",test);
+//////		
+//		rt_thread_mdelay(100);
+//		test=0;
+//		test=EE_ReadS(0x01,&test,1);
+//		log_info("test:0x%x\r\n",test);
+		
+//		rt_thread_mdelay(100);
+//		//log_info("CheckDevice EEPROM:0x%x\r\n",i2cb_CheckDevice(0xA0));
+//		rt_thread_mdelay(100);
+//		//log_info("CheckDevice TempA:0x%x\r\n",i2cb_CheckDevice(TEMP_A_ADDR));
+//		rt_thread_mdelay(100);
+//		//log_info("CheckDevice TempB:0x%x\r\n",i2cb_CheckDevice(TEMP_B_ADDR));
+//		rt_thread_mdelay(100);
+		
+		
 	
 
 		
