@@ -213,11 +213,13 @@ void led_thread_entry(void *par)
 	
 	while(1)
 	{
-		rt_thread_mdelay(200);
-		LED_RUN_ON();
-		//LED_OVLD_ON();
-		rt_thread_mdelay(200);
+		
 		LED_RUN_OFF();
+		rt_thread_mdelay(75);
+		//LED_OVLD_ON();
+		
+		LED_RUN_ON();
+		rt_thread_mdelay(1050);
 		//LED_OVLD_OFF();
 	}
 	
