@@ -2,13 +2,18 @@
 
 //static float ADC_gain[6]={0};
 
+
+
 void adc_thread_entry(void *par)
 {
+	ADC_GPIO_Configuration();
+	rt_thread_mdelay(50);
 	ADC_Config();	//配置ADC工作模式
 	//开定时器，定时触发ADC
 	//开启外部中断
 	//创建信号量
-	rt_thread_mdelay(100);
+	
+	rt_thread_mdelay(50);
 //	ADC_gain[0] = ADC_CH1_GAIN;
 //	ADC_gain[1] = ADC_CH2_GAIN;
 //	ADC_gain[2] = ADC_CH3_GAIN;
@@ -23,8 +28,14 @@ void adc_thread_entry(void *par)
 	
 	while(1)
 	{
-		//get_10times_adc();
-		//cal_results();
+//		if(led_sw_flag != LEDSW_ON)
+//		{
+//			get_10times_adc();
+//			cal_results();
+////			log_info("Exin_Analog_signal:%fV,LED2_Current:%fA,LED2_Temp:%f,LED1_Light_Intensity:%f,LED1_Current:%fA,LED1_Temp:%f\r\n",\
+////			sADCCONVData.Exin_Analog_signal,sADCCONVData.LED2_Current,sADCCONVData.LED2_Temp,sADCCONVData.LED1_Light_Intensity,sADCCONVData.LED1_Current,sADCCONVData.LED1_Temp);
+//		}
+		
 		rt_thread_mdelay(2000);
 	}
 }
@@ -78,7 +89,7 @@ void get_adc(void)
 }
 
 
-void get_10times_adc(void)	//获取20次数据，减去最大最小值，取中间10个数据求平均
+void get_10times_adc(void)	//获取10次数据，减去最大最小值，取中间6个数据求平均
 {
 	float value_A[6][10]={0};
 	float value_b[6]={0};
@@ -110,31 +121,142 @@ void get_10times_adc(void)	//获取20次数据，减去最大最小值，取中间10个数据求平均
 		value_b[5]  +=  value_A[5][i+2];
 	}
 	
-	/*
-ADC ch0---->LED2_Current
-ADC ch1---->LED1_Current
-ADC ch2---->LED2_Temp
-ADC ch3---->LED1_Temp
-ADC ch4---->Light_intensity
-ADC ch5---->Analog_Input
+/*
+	ADC ch0---->LED2_Current
+	ADC ch1---->LED1_Current
+	ADC ch2---->LED2_Temp
+	ADC ch3---->LED1_Temp
+	ADC ch4---->Light_intensity
+	ADC ch5---->Analog_Input
 */
+	sADCCONVData.Exin_Analog_signal 	= 	value_b[5]/6;
+	sADCCONVData.LED2_Current 			= 	value_b[0]/6;
+	sADCCONVData.LED2_Temp 				= 	value_b[2]/6;
+	sADCCONVData.LED1_Light_Intensity 	= 	value_b[4]/6;
+	sADCCONVData.LED1_Current 			= 	value_b[1]/6;
+	sADCCONVData.LED1_Temp 				= 	value_b[3]/6;
 	
-	sADCCONVData.Exin_Analog_signal = 	value_b[5]/6;
-	sADCCONVData.LED2_Current = 		value_b[0]/6;
-	sADCCONVData.LED2_Temp = 			value_b[2]/6;
-	sADCCONVData.LED1_Light_Intensity = value_b[4]/6;
-	sADCCONVData.LED1_Current = 		value_b[1]/6;
-	sADCCONVData.LED1_Temp = 			value_b[3]/6;
-	
-	
-	sADCCONVData.Exin_Analog_signal = 	sADCCONVData.Exin_Analog_signal/Analog_Input_Gain;
-	sADCCONVData.LED2_Current = 		sADCCONVData.LED2_Current/LED2_Current_Gain;
-	sADCCONVData.LED2_Temp = 			sADCCONVData.LED2_Temp/LED2_Temp_Gain;
-	sADCCONVData.LED1_Light_Intensity = sADCCONVData.LED1_Light_Intensity/Light_intensity_Gain;
-	sADCCONVData.LED1_Current = 		sADCCONVData.LED1_Current/LED1_Current_Gain;
-	sADCCONVData.LED1_Temp = 			sADCCONVData.LED1_Temp/LED1_Temp_Gain;
+	sADCCONVData.Exin_Analog_signal 	= 	sADCCONVData.Exin_Analog_signal		/	Analog_Input_Gain;
+	sADCCONVData.LED2_Current 			= 	sADCCONVData.LED2_Current			/	LED2_Current_Gain;
+	sADCCONVData.LED2_Temp 				= 	sADCCONVData.LED2_Temp				/	LED2_Temp_Gain;
+	sADCCONVData.LED1_Light_Intensity 	= 	sADCCONVData.LED1_Light_Intensity	/	Light_intensity_Gain;
+	sADCCONVData.LED1_Current 			= 	sADCCONVData.LED1_Current			/	LED1_Current_Gain;
+	sADCCONVData.LED1_Temp 				= 	sADCCONVData.LED1_Temp				/	LED1_Temp_Gain;
 }
 
+
+void get_5times_adc(void)	//获取5次数据，减去最大最小值，取中间3个数据求平均
+{
+	float value_A[6][5]={0};
+	float value_b[6]={0};
+	
+	float value_max[6]={0};
+	float value_min[6]={0};
+	uint8_t i=0;
+	
+	for(i=0;i<5;i++)
+	{
+		get_adc();
+		value_A[0][i] = value[0];
+		value_A[1][i] = value[1];
+		value_A[2][i] = value[2];
+		value_A[3][i] = value[3];
+		value_A[4][i] = value[4];
+		value_A[5][i] = value[5];
+	}
+	
+	for(i=0;i<5;i++)
+	{
+		value_b[0]  +=  value_A[0][i];
+		value_b[1]  +=  value_A[1][i];
+		value_b[2]  +=  value_A[2][i];
+		value_b[3]  +=  value_A[3][i];
+		value_b[4]  +=  value_A[4][i];
+		value_b[5]  +=  value_A[5][i];
+	}
+	
+	for(i=0;i<6;i++)
+	{
+		f_max_min(value_A[i],5,&value_max[i],&value_min[i]);
+	}
+	
+	for(i=0;i<6;i++)
+	{
+		value_b[i] -= value_max[i];
+		value_b[i] -= value_min[i];
+	}
+	
+	
+/*
+	ADC ch0---->LED2_Current
+	ADC ch1---->LED1_Current
+	ADC ch2---->LED2_Temp
+	ADC ch3---->LED1_Temp
+	ADC ch4---->Light_intensity
+	ADC ch5---->Analog_Input
+*/
+	sADCCONVData.Exin_Analog_signal 	= 	value_b[5]/3;
+	sADCCONVData.LED2_Current 			= 	value_b[0]/3;
+	sADCCONVData.LED2_Temp 				= 	value_b[2]/3;
+	sADCCONVData.LED1_Light_Intensity 	= 	value_b[4]/3;
+	sADCCONVData.LED1_Current 			= 	value_b[1]/3;
+	sADCCONVData.LED1_Temp 				= 	value_b[3]/3;
+	
+	sADCCONVData.Exin_Analog_signal 	= 	sADCCONVData.Exin_Analog_signal		/	Analog_Input_Gain;
+	sADCCONVData.LED2_Current 			= 	sADCCONVData.LED2_Current			/	LED2_Current_Gain;
+	sADCCONVData.LED2_Temp 				= 	sADCCONVData.LED2_Temp				/	LED2_Temp_Gain;
+	sADCCONVData.LED1_Light_Intensity 	= 	sADCCONVData.LED1_Light_Intensity	/	Light_intensity_Gain;
+	sADCCONVData.LED1_Current 			= 	sADCCONVData.LED1_Current			/	LED1_Current_Gain;
+	sADCCONVData.LED1_Temp 				= 	sADCCONVData.LED1_Temp				/	LED1_Temp_Gain;
+}
+
+
+
+
+static float r3=20000;
+static float r4=0.0,A=0.0;
+static float V=2.5;
+
+void get_1times_adc(void)	//获取5次数据，减去最大最小值，取中间3个数据求平均
+{	
+	
+	get_adc();
+	sADCCONVData.LED2_Current = value[0];
+	sADCCONVData.LED1_Current = value[1];
+	sADCCONVData.LED2_Temp = value[2];
+	sADCCONVData.LED1_Temp = value[3];
+	sADCCONVData.LED1_Light_Intensity = value[4];
+	sADCCONVData.Exin_Analog_signal = value[5];
+	
+/*
+	ADC ch0---->LED2_Current
+	ADC ch1---->LED1_Current
+	ADC ch2---->LED2_Temp
+	ADC ch3---->LED1_Temp
+	ADC ch4---->Light_intensity
+	ADC ch5---->Analog_Input
+*/
+
+	
+	sADCCONVData.Exin_Analog_signal 	= 	sADCCONVData.Exin_Analog_signal		/	Analog_Input_Gain;
+	sADCCONVData.LED2_Current 			= 	sADCCONVData.LED2_Current			/	LED2_Current_Gain;
+	sADCCONVData.LED2_Temp 				= 	sADCCONVData.LED2_Temp				/	LED2_Temp_Gain;
+	sADCCONVData.LED1_Light_Intensity 	= 	sADCCONVData.LED1_Light_Intensity	/	Light_intensity_Gain;
+	sADCCONVData.LED1_Current 			= 	sADCCONVData.LED1_Current			/	LED1_Current_Gain;
+	sADCCONVData.LED1_Temp 				= 	sADCCONVData.LED1_Temp				/	LED1_Temp_Gain;
+	
+	sADCCONVData.LED2_Current = sADCCONVData.LED2_Current/LED2_CURRENT_RES;
+	sADCCONVData.LED1_Current = sADCCONVData.LED1_Current/LED1_CURRENT_RES;
+	
+	
+	A=0.5-sADCCONVData.LED2_Temp/V;
+	r4=A*r3/(1-A);
+	sADCCONVData.LED2_Temp = r4;				//计算出电阻值
+		
+	A=0.5-sADCCONVData.LED1_Temp/V;
+	r4=A*r3/(1-A);
+	sADCCONVData.LED1_Temp = r4;				//计算出电阻值	
+}
 
 
 void cal_results(void)
@@ -153,15 +275,16 @@ void cal_results(void)
 	sADCCONVData.LED1_Current = sADCCONVData.LED1_Current/LED1_CURRENT_RES;
 	
 	{
-		float r1=10000,r2=10000,r3=20000;
-		float r4=0.0,A=0.0;
-		float V=2.5;
+		//float r1=10000,r2=10000,r3=20000;
 		
-		A=r2/(r1+r2)-sADCCONVData.LED2_Temp/V;
+		
+		//A=r2/(r1+r2)-sADCCONVData.LED2_Temp/V;
+		A=0.5-sADCCONVData.LED2_Temp/V;
 		r4=A*r3/(1-A);
 		sADCCONVData.LED2_Temp = r4;				//计算出电阻值
 		
-		A=r2/(r1+r2)-sADCCONVData.LED1_Temp/V;
+		//A=r2/(r1+r2)-sADCCONVData.LED1_Temp/V;
+		A=0.5-sADCCONVData.LED1_Temp/V;
 		r4=A*r3/(1-A);
 		sADCCONVData.LED1_Temp = r4;				//计算出电阻值
 	}

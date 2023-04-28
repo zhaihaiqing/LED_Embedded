@@ -205,6 +205,22 @@ void Bubble_Sort(float *pa,unsigned int len, unsigned char f)
 }
 
 
+void f_max_min(float *pa,uint32_t len,float *p_max,float *p_min)
+{
+	uint32_t ix=0;
+	
+	*p_max = *pa;
+	*p_min = *pa;
+	for(ix=1;ix<len;ix++)
+	{
+		pa++;
+		if(*p_max < *pa)
+			*p_max = *pa;
+		if(*p_min > *pa)
+			*p_min = *pa;
+	}
+}
+
 
 /*******************************************************************************
 * Function Name  : CRC16_Check

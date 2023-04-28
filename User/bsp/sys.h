@@ -97,6 +97,7 @@ void MSR_MSP(unsigned int addr);	//…Ë÷√∂—’ªµÿ÷∑
 
 
 void Bubble_Sort(float *pa,unsigned int len, unsigned char f);
+void f_max_min(float *pa,uint32_t len,float *p_max,float *p_min);
 
 extern volatile unsigned int SysTick_Count;
 extern volatile unsigned int TimingDelay;

@@ -17,7 +17,7 @@
 
 
 #define LOG_USART			USART6
-#define LOG_USART_BPS   	115200
+#define LOG_USART_BPS   	230400
 
 
 #define LOG_USART_RBUF_SIZE   256		//要求：2 的整次幂

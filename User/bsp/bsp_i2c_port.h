@@ -72,11 +72,6 @@
 
 
 
-//#define SET_I2CB_SDA_PORT_IN()     I2CB_SDA_GPIO_PORT->MODER   &= (0xfffffff3 << (I2CB_SDA_GPIO_Pin_NUM*2));
-//										
-//#define SET_I2CB_SDA_PORT_OUT()   {I2CB_SDA_GPIO_PORT->MODER   &= (0xfffffff3 << (I2CB_SDA_GPIO_Pin_NUM*2));I2CB_SDA_GPIO_PORT->MODER   |= (0x00000001 << (I2CB_SDA_GPIO_Pin_NUM*2));}
-
-
 
 
 

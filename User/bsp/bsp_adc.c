@@ -107,6 +107,10 @@ void Start_ADC_ConV(uint8_t ch)
 		GPIOE->BSRRH = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
 		__nop();
 		__nop();
+//		__nop();
+//		__nop();
+//		__nop();
+//		__nop();
 		//Delay_us(2);
 		GPIOE->BSRRL = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
 		//GPIO_SetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);	//ÉÏÉýÑØÆô¶¯×ª»»

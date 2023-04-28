@@ -37,6 +37,8 @@
 #include <string.h>
 #include <math.h>
 
+//#include "arm_math.h"
+
 #include "rtthread.h"
 #include "scs_thread.h"
 
@@ -49,10 +51,14 @@
 #include "bsp_iadc.h"
 #include "bsp_i2c.h"
 #include "bsp_i2c_port.h"
+
+#include "bsp_i2cc_port.h"
+
 #include "bsp_oled.h"
 #include "bsp_codec.h"
 #include "bsp_timer.h"
 #include "bsp_eeprom.h"
+#include "bsp_ds18b20.h"
 
 #include "app_key.h"
 #include "app_codec.h"
@@ -60,6 +66,11 @@
 #include "app_adc.h"
 #include "app_led.h"
 
+#include "app_test.h"
+
+
+//#define __FPU_PRESENT 	1U
+//#define __FPU_USED 		1U
 
 
 //需要存储的参数

@@ -58,12 +58,15 @@
 .\output\scs_thread.o: .\User\bsp\bsp_iadc.h
 .\output\scs_thread.o: .\User\bsp\bsp_i2c.h
 .\output\scs_thread.o: .\User\bsp\bsp_i2c_port.h
+.\output\scs_thread.o: .\User\bsp\bsp_i2cc_port.h
 .\output\scs_thread.o: .\User\bsp\bsp_oled.h
 .\output\scs_thread.o: .\User\bsp\bsp_codec.h
 .\output\scs_thread.o: .\User\bsp\bsp_timer.h
 .\output\scs_thread.o: .\User\bsp\bsp_eeprom.h
+.\output\scs_thread.o: .\User\bsp\bsp_ds18b20.h
 .\output\scs_thread.o: User\app_key.h
 .\output\scs_thread.o: User\app_codec.h
 .\output\scs_thread.o: User\app_temp.h
 .\output\scs_thread.o: User\app_adc.h
 .\output\scs_thread.o: User\app_led.h
+.\output\scs_thread.o: User\app_test.h

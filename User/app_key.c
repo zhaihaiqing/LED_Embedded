@@ -3,6 +3,7 @@
 uint8_t extcom_sw_flag = 0;		//控制模式选择，ON：使用后面板的控制信号控制LED，OFF：使用前面板控制信号控制LED
 uint8_t led_sw_flag	=	0;		//前面板LED控制信号，ON：打开LED，OFF，关闭LED
 uint8_t feedback_sw_flag = 0;	//后面板光强度反馈模式选择，ON：使用反馈，OFF：不使用反馈
+__IO uint8_t ex_led_sw_flag	= 0;	//BNC输入的数字信号，1：打开LED，0：关闭LED
 
 void sw_thread_entry(void *par)
 {

@@ -58,12 +58,15 @@
 .\output\sys.o: .\User\bsp\bsp_iadc.h
 .\output\sys.o: .\User\bsp\bsp_i2c.h
 .\output\sys.o: .\User\bsp\bsp_i2c_port.h
+.\output\sys.o: .\User\bsp\bsp_i2cc_port.h
 .\output\sys.o: .\User\bsp\bsp_oled.h
 .\output\sys.o: .\User\bsp\bsp_codec.h
 .\output\sys.o: .\User\bsp\bsp_timer.h
 .\output\sys.o: .\User\bsp\bsp_eeprom.h
+.\output\sys.o: .\User\bsp\bsp_ds18b20.h
 .\output\sys.o: .\User\app_key.h
 .\output\sys.o: .\User\app_codec.h
 .\output\sys.o: .\User\app_temp.h
 .\output\sys.o: .\User\app_adc.h
 .\output\sys.o: .\User\app_led.h
+.\output\sys.o: .\User\app_test.h

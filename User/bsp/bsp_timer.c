@@ -4,8 +4,8 @@
 #define TIM2_PSC	0
 #define TIM5_PSC	0
 
-#define TIM2_PWM_FREQ	25000
-#define TIM5_PWM_FREQ	25000
+#define TIM2_PWM_FREQ	20000
+#define TIM5_PWM_FREQ	20000
 
 void Timer2_PWM_Init(float Duty)
 {

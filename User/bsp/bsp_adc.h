@@ -21,20 +21,19 @@ ADC ch6---->Analog_Input
 
 
 
-#define 	LED1_Current_Gain		(19.8/2.7+1.0)		
-#define 	LED1_Temp_Gain			(19.8/2.7+1.0)
-#define 	LED2_Current_Gain		(19.8/2.7+1.0)
-#define 	LED2_Temp_Gain			(19.8/2.7+1.0)
-#define 	Light_intensity_Gain	((10000.0/(100.0+10000.0))*(1.0+2.7/2.7))
+//#define 	LED1_Current_Gain		(19.8/2.7+1.0)		
+//#define 	LED1_Temp_Gain			(19.8/2.7+1.0)
+//#define 	LED2_Current_Gain		(19.8/2.7+1.0)
+//#define 	LED2_Temp_Gain			(19.8/2.7+1.0)
+//#define 	Light_intensity_Gain	((10000.0/(100.0+10000.0))*(1.0+2.7/2.7))
+//#define 	Analog_Input_Gain		(1.0)
+
+#define 	LED1_Current_Gain		(8.333333)		
+#define 	LED1_Temp_Gain			(8.333333)
+#define 	LED2_Current_Gain		(8.333333)
+#define 	LED2_Temp_Gain			(8.333333)
+#define 	Light_intensity_Gain	(1.980198) 
 #define 	Analog_Input_Gain		(1.0)
-
-
-//#define ADC_CH1_GAIN	(10000.0/(100.0+10000.0))
-//#define ADC_CH2_GAIN	(19.8/4.99+1.0)
-//#define ADC_CH3_GAIN	(19.8/4.99+1.0)
-//#define ADC_CH4_GAIN	(2.0*10000.0/(100.0+10000.0))
-//#define ADC_CH5_GAIN	(19.8/2.7+1.0)
-//#define ADC_CH6_GAIN	(19.8/4.99+1.0)
 
 
 #define LED1_CURRENT_RES	0.045

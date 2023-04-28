@@ -72,85 +72,69 @@ uint32_t dqt=500;
 int main(void)
 {
 	float duty=0;
-	uint8_t test[10]={0},i=0;
+	uint8_t test[64]={0},i=0,j=0;
 	Init_Devices();
 	
 	scs_thread_init();
 	
-	rt_thread_mdelay(100);
+	//rt_thread_mdelay(100);
 	
-	{
-		float duty=0;
-		
-		duty = 2;
-		
-		Timer2_PWM_Init(duty);
-		Timer5_PWM_Init(duty);
-	
-		Timer2_PWM_OC3_Enable();
-		Timer5_PWM_OC2_Enable();
-	}
-	
-	
-	
-	
-	
-	
+//	{
+//		float duty=0;
+//		
+//		duty = 2;
+//		
+//		Timer2_PWM_Init(duty);
+//		Timer5_PWM_Init(duty);
+//	
+//		Timer2_PWM_OC3_Enable();
+//		Timer5_PWM_OC2_Enable();
+//	}
 	
 	while (1)
 	{
 		WDI_FD();
 		LED1_ON();
-		LED2_ON();
+		//LED2_ON();
 		rt_thread_mdelay(100);
 			
 		LED1_OFF();
-		LED2_OFF();
+		//LED2_OFF();
 		rt_thread_mdelay(100);
 		
 		
-		EE_ReadS(0x00,test,10);
-		log_info("test Read ");
-		for(i=0;i<10;i++)
-		{
-			log_info("0x%x ",test[i]);
-		}
-		log_info("\r\n\r\n");
-		rt_thread_mdelay(200);
+//		EE_ReadS(0x00,test,10);
+//		log_info("test Read ");
+//		for(i=0;i<10;i++)
+//		{
+//			log_info("0x%x ",test[i]);
+//		}
+//		log_info("\r\n\r\n");
+//		rt_thread_mdelay(200);
 
-		
-		
-		for(i=0;i<10;i++)
-		{
-			test[i] = 0x55+i;
-			EE_WriteOneByte(0x00+i,test[i]);
-		}
-		rt_thread_mdelay(200);
-		
-		
-		memset(test,0,sizeof(test));
-		EE_ReadS(0x00,test,10);
-		log_info("test Read ");
-		for(i=0;i<10;i++)
-		{
-			log_info("0x%x ",test[i]);
-		}
-		log_info("\r\n\r\n");
-		rt_thread_mdelay(200);
-		
+//		
+//		
+//		for(i=0;i<64;i++)
+//		{
+//			test[i] = 0x55+i;
+//			//EE_WriteOneByte(0x00+i,test[i]);
+//		}
+//		EE_WriteS(0x00,test,36);
+//		rt_thread_mdelay(200);
 ////		
-//////	//	
-//		EE_WriteOneByte(0x01,0x55);
-//		rt_thread_mdelay(100);
-//////	//	
-//		test=0;
-//		test=EE_ReadS(0x01,&test,1);
-//		log_info("test:0x%x\r\n\r\n",test);
-//////		
-//		rt_thread_mdelay(100);
-//		test=0;
-//		test=EE_ReadS(0x01,&test,1);
-//		log_info("test:0x%x\r\n",test);
+////		
+//		memset(test,0,sizeof(test));
+//		EE_ReadS(0x00,test,36);
+//		log_info("test Read ");
+//		for(i=0;i<36;i++)
+//		{
+//			log_info("0x%x ",test[i]);
+//		}
+//		log_info("\r\n\r\n");
+//		rt_thread_mdelay(2000);
+	
+//		
+
 		
 //		rt_thread_mdelay(100);
 //		//log_info("CheckDevice EEPROM:0x%x\r\n",i2cb_CheckDevice(0xA0));

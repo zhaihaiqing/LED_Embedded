@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>4</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -423,6 +423,11 @@
               <FileType>1</FileType>
               <FilePath>.\User\app_led.c</FilePath>
             </File>
+            <File>
+              <FileName>app_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\app_test.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -474,6 +479,11 @@
               <FilePath>.\User\bsp\bsp_i2c_port.c</FilePath>
             </File>
             <File>
+              <FileName>bsp_i2cc_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\bsp\bsp_i2cc_port.c</FilePath>
+            </File>
+            <File>
               <FileName>bsp_oled.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\bsp\bsp_oled.c</FilePath>
@@ -492,6 +502,11 @@
               <FileName>bsp_eeprom.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\bsp\bsp_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_ds18b20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\bsp\bsp_ds18b20.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -732,6 +747,13 @@
         </Group>
         <Group>
           <GroupName>DSP_Lib</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_cortexM4lf_math.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>.\DSP_Lib\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>RTOS_RTT_Nano</GroupName>

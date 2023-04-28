@@ -367,7 +367,7 @@ void i2cb_port_send_byte(unsigned char txd)
 		i2cb_port_delay();
 	}
 	
-	I2CA_SDA_1();	//释放总线 
+	I2CB_SDA_1();	//释放总线 
 } 	    
 //读1个字节，ack=1时，发送ACK，ack=0，发送nACK   
 unsigned char i2cb_port_read_byte(void)

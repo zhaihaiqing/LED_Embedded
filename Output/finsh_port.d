@@ -59,12 +59,15 @@
 .\output\finsh_port.o: .\User\bsp\bsp_iadc.h
 .\output\finsh_port.o: .\User\bsp\bsp_i2c.h
 .\output\finsh_port.o: .\User\bsp\bsp_i2c_port.h
+.\output\finsh_port.o: .\User\bsp\bsp_i2cc_port.h
 .\output\finsh_port.o: .\User\bsp\bsp_oled.h
 .\output\finsh_port.o: .\User\bsp\bsp_codec.h
 .\output\finsh_port.o: .\User\bsp\bsp_timer.h
 .\output\finsh_port.o: .\User\bsp\bsp_eeprom.h
+.\output\finsh_port.o: .\User\bsp\bsp_ds18b20.h
 .\output\finsh_port.o: .\User\app_key.h
 .\output\finsh_port.o: .\User\app_codec.h
 .\output\finsh_port.o: .\User\app_temp.h
 .\output\finsh_port.o: .\User\app_adc.h
 .\output\finsh_port.o: .\User\app_led.h
+.\output\finsh_port.o: .\User\app_test.h

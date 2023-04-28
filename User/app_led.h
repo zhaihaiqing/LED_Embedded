@@ -39,10 +39,22 @@ typedef struct
 	float AC;	
 }sPID_t;
 
-extern sPID_t PID;
+extern sPID_t PID1;
+extern sPID_t PID2;
 
 
 extern struct rt_semaphore cal_adcpid_sem;
+
+
+extern uint8_t IS_LED1_Exist;
+extern uint8_t IS_LED2_Exist;
+
+
+
+extern float cf_a;
+extern float cf_b;
+extern float cf_c;
+
 
 
 void LED1_Init(float Duty);
@@ -55,9 +67,11 @@ void Set_LED2_Duty(float Duty);
 void LED2_ENable(void);
 void LED2_Disable(void);
 
+float PID1_Cal(float target_Current,float Actual_current);
+float PID2_Cal(float target_Current,float Actual_current);
 
 void mled_thread_entry(void *par);
-
+void pled_monitor_thread_entry(void *par);
 
 #endif
 

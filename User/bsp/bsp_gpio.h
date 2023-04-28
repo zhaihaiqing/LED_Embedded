@@ -58,8 +58,8 @@
 #define LED_RUN_OFF()			GPIO_SetBits(LED_RUN_GPIO_Port,LED_RUN_GPIO_Pin)	//GPIOB->BSRRL = GPIO_Pin_8
 //#define LED_RUN_TOGGLE() 		GPIOB->ODR ^= GPIO_Pin_8
 
-#define LED_OVLD_ON()			GPIO_ResetBits(LED_OVLD_GPIO_Port,LED_OVLD_GPIO_Pin)
-#define LED_OVLD_OFF()			GPIO_SetBits(LED_OVLD_GPIO_Port,LED_OVLD_GPIO_Pin)
+#define LED_OVLD_OFF()			GPIO_ResetBits(LED_OVLD_GPIO_Port,LED_OVLD_GPIO_Pin)//;GPIO_ResetBits(BEEP_GPIO_Port,BEEP_GPIO_Pin)
+#define LED_OVLD_ON()			GPIO_SetBits(LED_OVLD_GPIO_Port,LED_OVLD_GPIO_Pin)//;GPIO_SetBits(BEEP_GPIO_Port,BEEP_GPIO_Pin)
 
 
 #define READ_EXCOM_SW()			GPIO_ReadInputDataBit(EXCOM_SW_GPIO_Port,EXCOM_SW_GPIO_Pin)	
@@ -73,8 +73,13 @@
 #define FAN_ON()				GPIO_SetBits(FAN_GPIO_Port,FAN_GPIO_Pin)
 #define FAN_OFF()				GPIO_ResetBits(FAN_GPIO_Port,FAN_GPIO_Pin)
 
-void GPIO_Configuration(void);
 
+#define IS_DIGIN_Rising()		GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)
+
+
+
+void GPIO_Configuration(void);
+void DIGIN_Iint(void);
 
 #endif /* __MAIN_H */
 

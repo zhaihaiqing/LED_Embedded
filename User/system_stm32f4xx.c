@@ -481,6 +481,7 @@ static void SystemInit_ExtMemCtl(void);
   * @param  None
   * @retval None
   */
+
 void SystemInit(void)
 {
   /* FPU settings ------------------------------------------------------------*/
