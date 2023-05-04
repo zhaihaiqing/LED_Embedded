@@ -22,73 +22,12 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 E:\02_HD\LED\LED_Embedded\Project.uvprojx
-Project File Date:  03/30/2023
+Project File Date:  05/04/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F4XX'
-compiling app_adc.c...
-User\app_adc.c(75): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			value[i] = ((float)adc_value[i]) * ADC_RANGE / 0x7fff;
-User\app_adc.c(79): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			value[i] = 0-((float)(0xffff - adc_value[i])) * ADC_RANGE / 0x7fff;
-User\app_adc.c(139): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.Exin_Analog_signal 	= 	sADCCONVData.Exin_Analog_signal		/	Analog_Input_Gain;
-User\app_adc.c(140): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED2_Current 			= 	sADCCONVData.LED2_Current			/	LED2_Current_Gain;
-User\app_adc.c(141): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED2_Temp 				= 	sADCCONVData.LED2_Temp				/	LED2_Temp_Gain;
-User\app_adc.c(142): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Light_Intensity 	= 	sADCCONVData.LED1_Light_Intensity	/	Light_intensity_Gain;
-User\app_adc.c(143): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Current 			= 	sADCCONVData.LED1_Current			/	LED1_Current_Gain;
-User\app_adc.c(144): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Temp 				= 	sADCCONVData.LED1_Temp				/	LED1_Temp_Gain;
-User\app_adc.c(205): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.Exin_Analog_signal 	= 	sADCCONVData.Exin_Analog_signal		/	Analog_Input_Gain;
-User\app_adc.c(206): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED2_Current 			= 	sADCCONVData.LED2_Current			/	LED2_Current_Gain;
-User\app_adc.c(207): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED2_Temp 				= 	sADCCONVData.LED2_Temp				/	LED2_Temp_Gain;
-User\app_adc.c(208): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Light_Intensity 	= 	sADCCONVData.LED1_Light_Intensity	/	Light_intensity_Gain;
-User\app_adc.c(209): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Current 			= 	sADCCONVData.LED1_Current			/	LED1_Current_Gain;
-User\app_adc.c(210): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Temp 				= 	sADCCONVData.LED1_Temp				/	LED1_Temp_Gain;
-User\app_adc.c(241): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.Exin_Analog_signal 	= 	sADCCONVData.Exin_Analog_signal		/	Analog_Input_Gain;
-User\app_adc.c(242): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED2_Current 			= 	sADCCONVData.LED2_Current			/	LED2_Current_Gain;
-User\app_adc.c(243): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED2_Temp 				= 	sADCCONVData.LED2_Temp				/	LED2_Temp_Gain;
-User\app_adc.c(244): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Light_Intensity 	= 	sADCCONVData.LED1_Light_Intensity	/	Light_intensity_Gain;
-User\app_adc.c(245): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Current 			= 	sADCCONVData.LED1_Current			/	LED1_Current_Gain;
-User\app_adc.c(246): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Temp 				= 	sADCCONVData.LED1_Temp				/	LED1_Temp_Gain;
-User\app_adc.c(248): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED2_Current = sADCCONVData.LED2_Current/LED2_CURRENT_RES;
-User\app_adc.c(249): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Current = sADCCONVData.LED1_Current/LED1_CURRENT_RES;
-User\app_adc.c(252): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	A=0.5-sADCCONVData.LED2_Temp/V;
-User\app_adc.c(256): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	A=0.5-sADCCONVData.LED1_Temp/V;
-User\app_adc.c(274): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED2_Current = sADCCONVData.LED2_Current/LED2_CURRENT_RES;
-User\app_adc.c(275): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	sADCCONVData.LED1_Current = sADCCONVData.LED1_Current/LED1_CURRENT_RES;
-User\app_adc.c(282): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  		A=0.5-sADCCONVData.LED2_Temp/V;
-User\app_adc.c(287): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  		A=0.5-sADCCONVData.LED1_Temp/V;
-User\app_adc.c: 28 warnings, 0 errors
-linking...
-Program Size: Code=28090 RO-data=6958 RW-data=1164 ZI-data=26812  
-FromELF: creating hex file...
-".\Output\STM32F4_DEMO.axf" - 0 Error(s), 28 Warning(s).
+".\Output\STM32F4_DEMO.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -101,7 +40,7 @@ Package Vendor: Keil
   C:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

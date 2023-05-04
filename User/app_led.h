@@ -22,6 +22,12 @@
 #define PIDDUTYMAX	100	//占空比保留两位小数，最大占空比为90.00%
 #define PIDDUTYMIN	0		//占空比最小值为0
 
+#define MIN_LED_CURRENT	0.02	//定义最小的LED启动电流
+#define MAX_LED_CURRENT	5		//定义最大的LED工作电流
+
+#define MIN_BNC_THRESHOLD 0.02		//BNC信号有效性阈值
+
+
 typedef struct
 {
 	float err;				//误差值

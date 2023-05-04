@@ -21,6 +21,10 @@ sPID_t PID1 				= 	{0};
 sPID_t PID2 				= 	{0};
 
 
+
+#define PID_ADJ_REDUNDANCY_VALUE	0.03	//电流误差小于该值，不需要PID进行调节
+
+
 /*			PID设置过程
 
 1：设置PID参数
@@ -193,6 +197,8 @@ uint16_t OV_Count_Avg = 5;	//电流积分次数
 float LED1_I_Current = 0;
 float LED2_I_Current = 0;
 
+uint16_t flag_bnc_fail	 = 0;	//使用标志，用来解决拔出BNC时，显示数字（等于判断阈值）不归零问题
+
 void mled_thread_entry(void *par)
 {
 	//包含LED灯电流控制
@@ -227,6 +233,14 @@ void mled_thread_entry(void *par)
 	}		
 	
 	get_1times_adc();
+	rt_thread_mdelay(50);
+	get_1times_adc();
+	rt_thread_mdelay(50);
+	get_1times_adc();
+	rt_thread_mdelay(50);
+	get_1times_adc();
+	rt_thread_mdelay(50);
+
 	
 	while(1)
 	{
@@ -262,8 +276,11 @@ void mled_thread_entry(void *par)
 		IS_LED1_Exist =1;
 		IS_LED2_Exist =1;
 		
+		
+		
 		if(led_sw_flag == LEDSW_ON)	//如果打开LED开关
 		{
+		/*******************************************************************************************************/
 			if(extcom_sw_flag == EXTCOM_OFF)	//使用前面板旋钮控制
 			{
 				if(feedback_sw_flag == FEEDBACK_OFF)				//使用电流进行反馈
@@ -277,13 +294,13 @@ void mled_thread_entry(void *par)
 					led2_current = FrontPanel_Set_current/100.0 + 0;
 				}
 				
-				if((led1_current >= 0.01) || (led2_current >= 0.01))
+				if((led1_current >= MIN_LED_CURRENT) || (led2_current >= MIN_LED_CURRENT))
 				{
 					if(IS_LED1_Exist)
 					{
 						adjust_val1 = PID1_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
 						//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
-						if( (adjust_val1 - old_val1 > 0.15)  || (old_val1 - adjust_val1 > 0.15))
+						if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE))
 						{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 							old_val1 = adjust_val1;
 							Set_LED1_Duty(adjust_val1);//打开LED//控制电流
@@ -293,7 +310,7 @@ void mled_thread_entry(void *par)
 					if(IS_LED2_Exist)
 					{
 						adjust_val2 = PID2_Cal(led2_current,sADCCONVData.LED2_Current);	
-						if( (adjust_val2 - old_val2 > 0.15)  || (old_val2 - adjust_val2 > 0.15))
+						if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE))
 						{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 							old_val2 = adjust_val2;
 							Set_LED2_Duty(adjust_val2);//打开LED//控制电流
@@ -301,11 +318,13 @@ void mled_thread_entry(void *par)
 					}
 				}
 			}
+		/*******************************************************************************************************/
 			else								//使用后面板+前面板组合控制逻辑
 			{
-				/*	1:判断BNC信号是否有效，大于0.01有效，小于等于0.01无效	*/
-				if(sADCCONVData.Exin_Analog_signal > 0.01)
+				/*	1:判断BNC信号是否有效，大于MIN_BNC_THRESHOLD有效，小于等于MIN_BNC_THRESHOLD无效	*/
+				if(sADCCONVData.Exin_Analog_signal >= MIN_BNC_THRESHOLD)
 				{
+					flag_bnc_fail = 1;
 					/*	2A:判断FB开关状态，关闭：使用BNC电压，将电压信号转换为电流值，打开：将BNC电压转换为对应的光强度	*/
 					if(feedback_sw_flag == FEEDBACK_OFF)		//使用电流进行反馈
 					{
@@ -318,8 +337,8 @@ void mled_thread_entry(void *par)
 						led2_current = sADCCONVData.Exin_Analog_signal + 0;
 					}
 					
-					if(led1_current > 5) led1_current =5;
-					if(led2_current > 5) led2_current =5;
+					if(led1_current > MAX_LED_CURRENT) led1_current = MAX_LED_CURRENT;
+					if(led2_current > MAX_LED_CURRENT) led2_current = MAX_LED_CURRENT;
 					
 					FrontPanel_Set_current = led1_current*100;
 					rt_sem_release(&oled_refresh_sem); //释放采样信号量，更新OLED
@@ -332,7 +351,7 @@ void mled_thread_entry(void *par)
 							adjust_val1 = PID1_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
 							//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
 				
-							if( (adjust_val1 - old_val1 > 0.25)  || (old_val1 - adjust_val1 > 0.25))
+							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE))
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val1 = adjust_val1;
 								Set_LED1_Duty(adjust_val1);//打开LED//控制电流
@@ -342,7 +361,7 @@ void mled_thread_entry(void *par)
 						if(IS_LED2_Exist)
 						{
 							adjust_val2 = PID2_Cal(led2_current,sADCCONVData.LED2_Current);	
-							if( (adjust_val2 - old_val2 > 0.25)  || (old_val2 - adjust_val2 > 0.25))
+							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE))
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val2 = adjust_val2;
 								Set_LED2_Duty(adjust_val2);//打开LED//控制电流
@@ -361,10 +380,12 @@ void mled_thread_entry(void *par)
 				}
 				else	//BNC信号小于阈值，使用前面板控制
 				{
-//					while(FrontPanel_Set_current%5 != 0)
-//					{
-//						FrontPanel_Set_current--;
-//					}
+					if(flag_bnc_fail == 1)	//使用标志，用来解决拔出BNC时，显示数字（等于判断阈值）不归零问题
+					{
+						flag_bnc_fail = 0;
+						FrontPanel_Set_current = 0;
+						rt_sem_release(&oled_refresh_sem); //释放采样信号量，更新OLED
+					}
 					
 					if(feedback_sw_flag == FEEDBACK_OFF)				//使用电流进行反馈
 					{
@@ -377,14 +398,14 @@ void mled_thread_entry(void *par)
 						led2_current = FrontPanel_Set_current/100.0 + 0;
 					}
 				
-					if((ex_led_sw_flag == LEDSW_ON)  && ((led1_current >= 0.01) || (led2_current >= 0.01)))
+					if((ex_led_sw_flag == LEDSW_ON)  && ((led1_current >= MIN_LED_CURRENT) || (led2_current >= MIN_LED_CURRENT)))
 					{
 						/*	3B:	判断LED1或LED2是否存在,同时判断控制信号是否为高，存在则执行PID调节*/
 						if(IS_LED1_Exist)
 						{
 							adjust_val1 = PID1_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
 							//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
-							if( (adjust_val1 - old_val1 > 0.15)  || (old_val1 - adjust_val1 > 0.15))
+							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE))
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val1 = adjust_val1;
 								Set_LED1_Duty(adjust_val1);//打开LED//控制电流
@@ -394,7 +415,7 @@ void mled_thread_entry(void *par)
 						if(IS_LED2_Exist)
 						{
 							adjust_val2 = PID2_Cal(led2_current,sADCCONVData.LED2_Current);	
-							if( (adjust_val2 - old_val2 > 0.15)  || (old_val2 - adjust_val2 > 0.15))
+							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE))
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val2 = adjust_val2;
 								Set_LED2_Duty(adjust_val2);//打开LED//控制电流
@@ -415,6 +436,39 @@ void mled_thread_entry(void *par)
 		}
 		else						//关闭LED
 		{
+			if(extcom_sw_flag != EXTCOM_OFF)
+			{
+				if(sADCCONVData.Exin_Analog_signal >= MIN_BNC_THRESHOLD )
+				{
+					flag_bnc_fail = 1;
+					if(feedback_sw_flag == FEEDBACK_OFF)		//使用电流进行反馈
+					{
+						led1_current = sADCCONVData.Exin_Analog_signal;	//使用模拟测量到的数据，单位转换为A
+						led2_current = sADCCONVData.Exin_Analog_signal;				
+					}
+					else										//使用光学反馈
+					{
+						led1_current = sADCCONVData.Exin_Analog_signal + 0;	//将光强度转换为对应的电流值，然后再利用电流值进行反馈
+						led2_current = sADCCONVData.Exin_Analog_signal + 0;
+					}
+					
+					if(led1_current > MAX_LED_CURRENT) led1_current = MAX_LED_CURRENT;
+					if(led2_current > MAX_LED_CURRENT) led2_current = MAX_LED_CURRENT;
+					
+					FrontPanel_Set_current = led1_current*100;
+					rt_sem_release(&oled_refresh_sem); //释放采样信号量，更新OLED
+				}
+				else
+				{
+					if(flag_bnc_fail == 1)	//使用标志，用来解决拔出BNC时，显示数字（等于判断阈值）不归零问题
+					{
+						flag_bnc_fail = 0;
+						FrontPanel_Set_current = 0;
+						rt_sem_release(&oled_refresh_sem); //释放采样信号量，更新OLED
+					}
+				}
+			}
+			
 			LED_OVLD_OFF();
 			PID_Parm_init();//关闭LED
 			old_val1 = 0;

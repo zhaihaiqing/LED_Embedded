@@ -36,8 +36,8 @@ ADC ch6---->Analog_Input
 #define 	Analog_Input_Gain		(1.0)
 
 
-#define LED1_CURRENT_RES	0.045
-#define LED2_CURRENT_RES	0.045
+#define LED1_CURRENT_RES	0.045	//两个90mΩ采样电阻并联
+#define LED2_CURRENT_RES	0.045	//两个90mΩ采样电阻并联
 
 
 

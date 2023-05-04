@@ -30,7 +30,27 @@ void codec_thread_entry(void *par)
 			//Rotate_Increase_Cnt++;
 			
 			//FrontPanel_Set_current++;
-			FrontPanel_Set_current=FrontPanel_Set_current+5;
+			if( FrontPanel_Set_current % 5 == 0)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current+5;
+			}
+			else if(FrontPanel_Set_current % 5 == 1)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current+4;
+			}
+			else if(FrontPanel_Set_current % 5 == 2)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current+3;
+			}
+			else if(FrontPanel_Set_current % 5 == 3)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current+2;
+			}
+			else if(FrontPanel_Set_current % 5 == 4)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current+1;
+			}
+			
 			if(FrontPanel_Set_current>500)
 			{
 				FrontPanel_Set_current=500;
@@ -46,7 +66,29 @@ void codec_thread_entry(void *par)
 		{
 			//Rotate_Decrease_Cnt++;
 			//FrontPanel_Set_current--;
-			FrontPanel_Set_current = FrontPanel_Set_current-5;
+			//FrontPanel_Set_current = FrontPanel_Set_current-5;
+			
+			if( FrontPanel_Set_current % 5 == 0)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current-5;
+			}
+			else if(FrontPanel_Set_current % 5 == 1)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current-1;
+			}
+			else if(FrontPanel_Set_current % 5 == 2)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current-2;
+			}
+			else if(FrontPanel_Set_current % 5 == 3)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current-3;
+			}
+			else if(FrontPanel_Set_current % 5 == 4)
+			{
+				FrontPanel_Set_current=FrontPanel_Set_current-4;
+			}
+			
 			if(FrontPanel_Set_current<0)
 			{
 				FrontPanel_Set_current=0;

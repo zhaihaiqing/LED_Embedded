@@ -248,6 +248,11 @@ void get_1times_adc(void)	//获取5次数据，减去最大最小值，取中间3个数据求平均
 	sADCCONVData.LED2_Current = sADCCONVData.LED2_Current/LED2_CURRENT_RES;
 	sADCCONVData.LED1_Current = sADCCONVData.LED1_Current/LED1_CURRENT_RES;
 	
+	//sADCCONVData.LED2_Current = ((uint16_t)(sADCCONVData.LED2_Current*100/LED2_CURRENT_RES))/100.0;
+	//sADCCONVData.LED1_Current = ((uint16_t)(sADCCONVData.LED1_Current*100/LED1_CURRENT_RES))/100.0;
+	
+//	sADCCONVData.Exin_Analog_signal = (uint16_t)(sADCCONVData.Exin_Analog_signal*100);
+//	sADCCONVData.Exin_Analog_signal = sADCCONVData.Exin_Analog_signal/100.0;
 	
 	A=0.5-sADCCONVData.LED2_Temp/V;
 	r4=A*r3/(1-A);
