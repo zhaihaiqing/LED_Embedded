@@ -317,6 +317,15 @@ void mled_thread_entry(void *par)
 						}
 					}
 				}
+				else
+				{
+					LED_OVLD_OFF();
+					PID_Parm_init();//关闭LED
+					old_val1 = 0;
+					old_val1 = 0;
+					Set_LED1_Duty(0);
+					Set_LED2_Duty(0);
+				}
 			}
 		/*******************************************************************************************************/
 			else								//使用后面板+前面板组合控制逻辑
