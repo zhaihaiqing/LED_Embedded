@@ -30,13 +30,13 @@
 #define LED_SW_GPIO_Pin		GPIO_Pin_9	//LED开关信号，LED_SW
 #define LED_SW_GPIO_Port	GPIOC
 
-#define FB_SW_GPIO_Pin		GPIO_Pin_5	//反馈开关信号，FB_SW
+#define FB_SW_GPIO_Pin		GPIO_Pin_7	//反馈开关信号，FB_SW
 #define FB_SW_GPIO_Port		GPIOA
 
 #define DIGIN_GPIO_Pin		GPIO_Pin_1	//数字开关信号，DIG_SW
 #define DIGIN_GPIO_Port		GPIOB
 
-#define BEEP_GPIO_Pin		GPIO_Pin_1	//蜂鸣器开关信号，BEEP
+#define BEEP_GPIO_Pin		GPIO_Pin_8	//蜂鸣器开关信号，BEEP
 #define BEEP_GPIO_Port		GPIOC
 
 #define FAN_GPIO_Pin		GPIO_Pin_7	//风扇开关信号，FAN_SW

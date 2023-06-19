@@ -57,8 +57,10 @@
 .\output\main.o: .\User\bsp\bsp_adc.h
 .\output\main.o: .\User\bsp\bsp_iadc.h
 .\output\main.o: .\User\bsp\bsp_i2c.h
-.\output\main.o: .\User\bsp\bsp_i2c_port.h
+.\output\main.o: .\User\bsp\bsp_i2ca_port.h
+.\output\main.o: .\User\bsp\bsp_i2cb_port.h
 .\output\main.o: .\User\bsp\bsp_i2cc_port.h
+.\output\main.o: .\User\bsp\bsp_spi.h
 .\output\main.o: .\User\bsp\bsp_oled.h
 .\output\main.o: .\User\bsp\bsp_codec.h
 .\output\main.o: .\User\bsp\bsp_timer.h

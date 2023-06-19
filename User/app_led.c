@@ -78,7 +78,7 @@ float PID1_Cal(float target_Current,float Actual_current)
 	PID1.err_n1 = PID1.err;
 	
 	if(PID1.UK < PIDDUTYMIN)PID1.UK = PIDDUTYMIN;			//设置最小值
-	else if(PID1.UK > PIDDUTYMAX) PID1.UK = PIDDUTYMAX;	//设置最大值
+	//else if(PID1.UK > PIDDUTYMAX) PID1.UK = PIDDUTYMAX;	//设置最大值
 	
 	return PID1.UK;
 }
@@ -92,7 +92,7 @@ float PID2_Cal(float target_Current,float Actual_current)
 	PID2.err_n1 = PID2.err;
 	
 	if(PID2.UK < PIDDUTYMIN)PID2.UK = PIDDUTYMIN;			//设置最小值
-	else if(PID2.UK > PIDDUTYMAX) PID2.UK = PIDDUTYMAX;		//设置最大值
+	//else if(PID2.UK > PIDDUTYMAX) PID2.UK = PIDDUTYMAX;		//设置最大值
 	
 	return PID2.UK;
 }
@@ -209,8 +209,11 @@ void mled_thread_entry(void *par)
 	float adjust_val1=0,old_val1=0;
 	float adjust_val2=0,old_val2=0;
 	float duty=0;
+	uint16_t count=0;
 	
 	rt_thread_mdelay(300);
+	
+	SPI3_Config();
 	
 	Timer2_PWM_Init(duty);
 	Timer5_PWM_Init(duty);
@@ -232,14 +235,44 @@ void mled_thread_entry(void *par)
 		ex_led_sw_flag = 1;
 	}		
 	
-	get_1times_adc();
-	rt_thread_mdelay(50);
-	get_1times_adc();
-	rt_thread_mdelay(50);
-	get_1times_adc();
-	rt_thread_mdelay(50);
-	get_1times_adc();
-	rt_thread_mdelay(50);
+//	rt_thread_mdelay(500);
+//	
+//	get_1times_adc();
+//	rt_thread_mdelay(50);
+//	get_1times_adc();
+//	rt_thread_mdelay(50);
+//	get_1times_adc();
+//	rt_thread_mdelay(50);
+//	get_1times_adc();
+//	rt_thread_mdelay(50);
+	
+	//log_info("mled_thread_entry\r\n");
+	
+	AD5542_WriteA(0);
+	Set_LED1_Duty(0);//打开LED//控制电流
+	rt_thread_mdelay(200);	
+	//AD5542_WriteA(100);
+	//AD5542_WriteB(100);
+	
+	//AD5542_WriteA(100);
+	//AD5542_WriteB(100);
+	
+	Set_LED1_Duty(100);
+	AD5542_WriteA(100);
+//	while(1)
+//	{
+//		rt_sem_control(&cal_adcpid_sem, RT_IPC_CMD_RESET, RT_NULL); //等待前清零信号量，防止误操作
+//		rt_sem_take(&cal_adcpid_sem, RT_WAITING_FOREVER);			//持续等待信号量
+//		
+//		rt_thread_mdelay(50);
+//		
+//		
+//		//get_1times_adc();
+//		//AD5542_WriteA(FrontPanel_Set_current*2.5);
+////		count++;
+////		if(count>1250)
+////			count=0;
+//	}
 
 	
 	while(1)
@@ -248,11 +281,7 @@ void mled_thread_entry(void *par)
 		rt_sem_control(&cal_adcpid_sem, RT_IPC_CMD_RESET, RT_NULL); //等待前清零信号量，防止误操作
 		rt_sem_take(&cal_adcpid_sem, RT_WAITING_FOREVER);			//持续等待信号量
 		
-		//LED2_ON();	//执行一轮计算，约用时275uS
-		
-		get_1times_adc();
-		//cal_results();
-		
+		get_1times_adc();		
 		
 		//检测灯头是否存在，通过灯头上的NTC电阻阻值进行判定
 		if(sADCCONVData.LED1_Temp < 400000)
@@ -276,7 +305,7 @@ void mled_thread_entry(void *par)
 		IS_LED1_Exist =1;
 		IS_LED2_Exist =1;
 		
-		
+		//AD5542_WriteA(100);
 		
 		if(led_sw_flag == LEDSW_ON)	//如果打开LED开关
 		{
@@ -300,20 +329,22 @@ void mled_thread_entry(void *par)
 					{
 						adjust_val1 = PID1_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
 						//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
-						if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val1==100))
+						if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) )
 						{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 							old_val1 = adjust_val1;
-							Set_LED1_Duty(adjust_val1);//打开LED//控制电流
+							AD5542_WriteA(adjust_val1);//打开LED//控制电流
+							Set_LED1_Duty(100);
 						}
 					}
 				
 					if(IS_LED2_Exist)
 					{
 						adjust_val2 = PID2_Cal(led2_current,sADCCONVData.LED2_Current);	
-						if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val2==100))
+						if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) )
 						{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 							old_val2 = adjust_val2;
-							Set_LED2_Duty(adjust_val2);//打开LED//控制电流
+							AD5542_WriteB(adjust_val2);//打开LED//控制电流
+							Set_LED2_Duty(100);
 						}
 					}
 				}
@@ -362,20 +393,22 @@ void mled_thread_entry(void *par)
 							adjust_val1 = PID1_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
 							//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
 				
-							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val1==100))
+							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) )
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val1 = adjust_val1;
-								Set_LED1_Duty(adjust_val1);//打开LED//控制电流
+								AD5542_WriteA(adjust_val1);//打开LED//控制电流
+								Set_LED1_Duty(100);
 							}
 						}
 				
 						if(IS_LED2_Exist)
 						{
 							adjust_val2 = PID2_Cal(led2_current,sADCCONVData.LED2_Current);	
-							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val2==100))
+							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) )
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val2 = adjust_val2;
-								Set_LED2_Duty(adjust_val2);//打开LED//控制电流
+								AD5542_WriteB(adjust_val2);//打开LED//控制电流
+								Set_LED2_Duty(100);
 							}
 						}
 					}
@@ -410,28 +443,30 @@ void mled_thread_entry(void *par)
 						led1_current = FrontPanel_Set_current/100.0 + 0;	//将光强度转换为对应的电流值，然后再利用电流值进行反馈
 						led2_current = FrontPanel_Set_current/100.0 + 0;
 					}
-				
+					
 					if((ex_led_sw_flag == LEDSW_ON)  && ((led1_current >= MIN_LED_CURRENT) || (led2_current >= MIN_LED_CURRENT)))
 					{
 						/*	3B:	判断LED1或LED2是否存在,同时判断控制信号是否为高，存在则执行PID调节*/
 						if(IS_LED1_Exist)
 						{
 							adjust_val1 = PID1_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
-							//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
-							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val1==100))
+							//log_info("3T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
+							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) )
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val1 = adjust_val1;
-								Set_LED1_Duty(adjust_val1);//打开LED//控制电流
+								AD5542_WriteA(adjust_val1);//打开LED//控制电流
+								Set_LED1_Duty(100);
 							}
 						}
 				
 						if(IS_LED2_Exist)
 						{
 							adjust_val2 = PID2_Cal(led2_current,sADCCONVData.LED2_Current);	
-							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val2==100))
+							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) )
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val2 = adjust_val2;
-								Set_LED2_Duty(adjust_val2);//打开LED//控制电流
+								AD5542_WriteB(adjust_val2);//打开LED//控制电流
+								Set_LED2_Duty(100);
 							}
 						}
 					}

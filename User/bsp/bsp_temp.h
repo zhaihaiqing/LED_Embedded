@@ -7,6 +7,8 @@
 #define TEMP_A_ADDR		0x90
 #define TEMP_B_ADDR		0x92
 
+
+
 #define LM75_REG_TEMP        0x00
 
 

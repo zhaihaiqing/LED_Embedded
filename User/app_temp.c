@@ -144,7 +144,7 @@
 
 void board_temp_thread_entry(void *par)
 {
-	float board_tempA=0,board_tempB=0;
+	float board_tempA=0,board_tempB=0,board_temp=0;
 	uint32_t ix=0;
 	rt_thread_mdelay(100);
 	
@@ -163,9 +163,18 @@ void board_temp_thread_entry(void *par)
 			log_info("board_tempA:%f   board_tempB:%f\r\n",board_tempA,board_tempB);
 		}
 		
+		if(board_tempA >= board_tempB)
+		{
+			board_temp = board_tempA;
+		}
+		else
+		{
+			board_temp = board_tempB;
+		}
 		
 		
-		if( (board_tempA>45.0) || (board_tempB>45.0))			//主板温度大于45度，开启散热
+		
+		if( board_temp>50.0)			//主板温度大于45度，开启散热
 		{
 			FAN_ON();
 			rt_thread_mdelay(5000);
@@ -177,7 +186,7 @@ void board_temp_thread_entry(void *par)
 		{
 			FAN_OFF();
 		}
-		rt_thread_mdelay(1800);
+		rt_thread_mdelay(800);
 	}	
 }
 

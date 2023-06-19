@@ -9,11 +9,12 @@ void adc_thread_entry(void *par)
 	ADC_GPIO_Configuration();
 	rt_thread_mdelay(50);
 	ADC_Config();	//配置ADC工作模式
+	rt_thread_mdelay(50);
 	//开定时器，定时触发ADC
 	//开启外部中断
 	//创建信号量
 	
-	rt_thread_mdelay(50);
+	
 //	ADC_gain[0] = ADC_CH1_GAIN;
 //	ADC_gain[1] = ADC_CH2_GAIN;
 //	ADC_gain[2] = ADC_CH3_GAIN;
@@ -21,10 +22,10 @@ void adc_thread_entry(void *par)
 //	ADC_gain[4] = ADC_CH5_GAIN;
 //	ADC_gain[5] = ADC_CH6_GAIN;
 	
-	get_adc();		//提前转换两次，避免经未转换的数据进入计算
-	rt_thread_mdelay(10);
-	get_adc();
-	rt_thread_mdelay(10);
+	//get_adc();		//提前转换两次，避免经未转换的数据进入计算
+	rt_thread_mdelay(100);
+	
+	get_1times_adc();
 	
 	while(1)
 	{
@@ -35,7 +36,7 @@ void adc_thread_entry(void *par)
 ////			log_info("Exin_Analog_signal:%fV,LED2_Current:%fA,LED2_Temp:%f,LED1_Light_Intensity:%f,LED1_Current:%fA,LED1_Temp:%f\r\n",\
 ////			sADCCONVData.Exin_Analog_signal,sADCCONVData.LED2_Current,sADCCONVData.LED2_Temp,sADCCONVData.LED1_Light_Intensity,sADCCONVData.LED1_Current,sADCCONVData.LED1_Temp);
 //		}
-		
+		//get_1times_adc();
 		rt_thread_mdelay(2000);
 	}
 }
@@ -50,25 +51,32 @@ ADC ch6---->Analog_Input
 */
 
 static float value[6]={0};
+
 void get_adc(void)
 {
 	uint8_t i=0;
 	uint16_t adc_value[6]={0};
+	uint32_t timeout = 0x2ffff;
 	
 	ADC_RD_H();
-	Start_ADC_ConV(ADC_CONV_ALL);	//转换所有通道
-	//Delay_us(5);					//等待信号量
-	while(IS_ADC_BUSY())
+	ADC_CONV_H();	//启动转换
+	__nop();__nop();__nop();__nop();
+	__nop();__nop();__nop();__nop();
+	__nop();__nop();__nop();__nop();
+	//Start_ADC_ConV();	//转换所有通道
+	//Delay_us(6);					
+	while(IS_ADC_BUSY() && (timeout--))	//等待转换完成
 	{
 		;
 	}
 		
 	for(i=0;i<6;i++)
 	{
-		ADC_RD_H();
-		__nop();__nop();
+		
 		ADC_RD_L();
-		__nop();__nop();
+		__nop();__nop();__nop();__nop();
+		__nop();__nop();__nop();__nop();
+		__nop();__nop();__nop();__nop();
 		adc_value[i] = GPIOD->IDR & 0XFFFF;	//获取ADC数据
 		if((adc_value[i] & 0x8000) != 0x8000)
 		{
@@ -78,8 +86,15 @@ void get_adc(void)
 		{
 			value[i] = 0-((float)(0xffff - adc_value[i])) * ADC_RANGE / 0x7fff;
 		}
+		
+		ADC_RD_H();
+		__nop();__nop();__nop();__nop();
+		__nop();__nop();__nop();__nop();
+		__nop();__nop();__nop();__nop();
 		//value[i] = value[i]/ADC_gain[i];
 	}
+	ADC_CONV_L();
+	
 	
 	//rt_memcpy((void *)&sADCCONVData,value,sizeof(value));
 	

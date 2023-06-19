@@ -16,28 +16,28 @@
 **********************************************/
 void Oled_Write_IIC_Command(unsigned char IIC_Command)
 {
-	oled_i2c_port_start();
-	oled_i2c_port_send_byte(0x78);            //Slave address,SA0=0
-	oled_i2c_port_wait_ack();	
-	oled_i2c_port_send_byte(0x00);			//write command
-	oled_i2c_port_wait_ack();	
-	oled_i2c_port_send_byte(IIC_Command); 
-	oled_i2c_port_wait_ack();	
-	oled_i2c_port_stop();
+	i2ca_port_start();
+	i2ca_port_send_byte(0x78);            //Slave address,SA0=0
+	i2ca_port_wait_ack();	
+	i2ca_port_send_byte(0x00);			//write command
+	i2ca_port_wait_ack();	
+	i2ca_port_send_byte(IIC_Command); 
+	i2ca_port_wait_ack();	
+	i2ca_port_stop();
 }
 /**********************************************
 // IIC Write Data
 **********************************************/
 void Oled_Write_IIC_Data(unsigned char IIC_Data)
 {
-	oled_i2c_port_start();
-	oled_i2c_port_send_byte(0x78);			//D/C#=0; R/W#=0
-	oled_i2c_port_wait_ack();	
-	oled_i2c_port_send_byte(0x40);			//write data
-	oled_i2c_port_wait_ack();	
-	oled_i2c_port_send_byte(IIC_Data);
-	oled_i2c_port_wait_ack();	
-	oled_i2c_port_stop();
+	i2ca_port_start();
+	i2ca_port_send_byte(0x78);			//D/C#=0; R/W#=0
+	i2ca_port_wait_ack();	
+	i2ca_port_send_byte(0x40);			//write data
+	i2ca_port_wait_ack();	
+	i2ca_port_send_byte(IIC_Data);
+	i2ca_port_wait_ack();	
+	i2ca_port_stop();
 }
 void OLED_WR_Byte(unsigned dat,unsigned cmd)
 {
@@ -283,7 +283,7 @@ void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned 
 //≥ı ºªØSSD1306					    
 void OLED_Init(void)
 { 	
-	oled_i2c_port_init();
+	i2ca_port_init();
 
 
 	rt_thread_mdelay(200);

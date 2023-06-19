@@ -1,7 +1,7 @@
 Dependencies for Project 'Project', Target 'STM32F4XX': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (.\User\main.c)(0x6427F019)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
-I (User\main.h)(0x64251047)
+I (User\main.h)(0x648FCD94)
 I (User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -52,13 +52,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -107,7 +109,7 @@ I (.\Stdlib\inc\stm32f4xx_can.h)(0x5821F050)
 I (.\Stdlib\inc\stm32f4xx_dac.h)(0x581CC67B)
 I (.\Stdlib\inc\stm32f4xx_dcmi.h)(0x581CC67B)
 I (.\Stdlib\inc\stm32f4xx_fsmc.h)(0x581CC67B)
-I (User\main.h)(0x64251047)
+I (User\main.h)(0x648FCD94)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
@@ -123,13 +125,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -141,8 +145,8 @@ I (User\app_temp.h)(0x6424F025)
 I (User\app_adc.h)(0x641D7255)
 I (User\app_led.h)(0x64533286)
 I (User\app_test.h)(0x642423FB)
-F (.\User\scs_thread.c)(0x644B9E29)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\scs_thread.o --omf_browse .\output\scs_thread.crf --depend .\output\scs_thread.d)
-I (User\main.h)(0x64251047)
+F (.\User\scs_thread.c)(0x648FD25C)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\scs_thread.o --omf_browse .\output\scs_thread.crf --depend .\output\scs_thread.d)
+I (User\main.h)(0x648FCD94)
 I (User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -193,13 +197,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -212,7 +218,7 @@ I (User\app_adc.h)(0x641D7255)
 I (User\app_led.h)(0x64533286)
 I (User\app_test.h)(0x642423FB)
 F (.\User\app_key.c)(0x641AAC93)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\app_key.o --omf_browse .\output\app_key.crf --depend .\output\app_key.d)
-I (User\main.h)(0x64251047)
+I (User\main.h)(0x648FCD94)
 I (User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -263,13 +269,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -282,7 +290,7 @@ I (User\app_adc.h)(0x641D7255)
 I (User\app_led.h)(0x64533286)
 I (User\app_test.h)(0x642423FB)
 F (.\User\app_codec.c)(0x64532D2E)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\app_codec.o --omf_browse .\output\app_codec.crf --depend .\output\app_codec.d)
-I (User\main.h)(0x64251047)
+I (User\main.h)(0x648FCD94)
 I (User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -333,13 +341,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -351,8 +361,8 @@ I (User\app_temp.h)(0x6424F025)
 I (User\app_adc.h)(0x641D7255)
 I (User\app_led.h)(0x64533286)
 I (User\app_test.h)(0x642423FB)
-F (.\User\app_temp.c)(0x6427F01F)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\app_temp.o --omf_browse .\output\app_temp.crf --depend .\output\app_temp.d)
-I (User\main.h)(0x64251047)
+F (.\User\app_temp.c)(0x64900D23)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\app_temp.o --omf_browse .\output\app_temp.crf --depend .\output\app_temp.d)
+I (User\main.h)(0x648FCD94)
 I (User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -403,13 +413,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -421,8 +433,8 @@ I (User\app_temp.h)(0x6424F025)
 I (User\app_adc.h)(0x641D7255)
 I (User\app_led.h)(0x64533286)
 I (User\app_test.h)(0x642423FB)
-F (.\User\app_adc.c)(0x6479B14D)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\app_adc.o --omf_browse .\output\app_adc.crf --depend .\output\app_adc.d)
-I (User\main.h)(0x64251047)
+F (.\User\app_adc.c)(0x649032AF)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\app_adc.o --omf_browse .\output\app_adc.crf --depend .\output\app_adc.d)
+I (User\main.h)(0x648FCD94)
 I (User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -473,13 +485,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -491,8 +505,8 @@ I (User\app_temp.h)(0x6424F025)
 I (User\app_adc.h)(0x641D7255)
 I (User\app_led.h)(0x64533286)
 I (User\app_test.h)(0x642423FB)
-F (.\User\app_led.c)(0x648FB5B5)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\app_led.o --omf_browse .\output\app_led.crf --depend .\output\app_led.d)
-I (User\main.h)(0x64251047)
+F (.\User\app_led.c)(0x64903A1A)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\app_led.o --omf_browse .\output\app_led.crf --depend .\output\app_led.d)
+I (User\main.h)(0x648FCD94)
 I (User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -543,13 +557,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -562,7 +578,7 @@ I (User\app_adc.h)(0x641D7255)
 I (User\app_led.h)(0x64533286)
 I (User\app_test.h)(0x642423FB)
 F (.\User\app_test.c)(0x642684A2)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\app_test.o --omf_browse .\output\app_test.crf --depend .\output\app_test.d)
-I (User\main.h)(0x64251047)
+I (User\main.h)(0x648FCD94)
 I (User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -613,13 +629,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -632,7 +650,7 @@ I (User\app_adc.h)(0x641D7255)
 I (User\app_led.h)(0x64533286)
 I (User\app_test.h)(0x642423FB)
 F (.\User\bsp\debug_uart.c)(0x63F1D5A9)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\debug_uart.o --omf_browse .\output\debug_uart.crf --depend .\output\debug_uart.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -682,13 +700,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -738,7 +758,7 @@ I (.\Stdlib\inc\stm32f4xx_dac.h)(0x581CC67B)
 I (.\Stdlib\inc\stm32f4xx_dcmi.h)(0x581CC67B)
 I (.\Stdlib\inc\stm32f4xx_fsmc.h)(0x581CC67B)
 F (.\User\bsp\sys.c)(0x641A8318)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\sys.o --omf_browse .\output\sys.crf --depend .\output\sys.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -788,13 +808,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -807,7 +829,7 @@ I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
 F (.\User\bsp\bsp_gpio.c)(0x642684BA)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_gpio.o --omf_browse .\output\bsp_gpio.crf --depend .\output\bsp_gpio.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -857,13 +879,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -875,8 +899,8 @@ I (.\User\app_temp.h)(0x6424F025)
 I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
-F (.\User\bsp\bsp_temp.c)(0x648FB2BB)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_temp.o --omf_browse .\output\bsp_temp.crf --depend .\output\bsp_temp.d)
-I (.\User\main.h)(0x64251047)
+F (.\User\bsp\bsp_temp.c)(0x648FCD28)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_temp.o --omf_browse .\output\bsp_temp.crf --depend .\output\bsp_temp.d)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -926,13 +950,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -944,8 +970,8 @@ I (.\User\app_temp.h)(0x6424F025)
 I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
-F (.\User\bsp\bsp_adc.c)(0x641449ED)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_adc.o --omf_browse .\output\bsp_adc.crf --depend .\output\bsp_adc.d)
-I (.\User\main.h)(0x64251047)
+F (.\User\bsp\bsp_adc.c)(0x64901A67)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_adc.o --omf_browse .\output\bsp_adc.crf --depend .\output\bsp_adc.d)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -995,13 +1021,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -1014,7 +1042,7 @@ I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
 F (.\User\bsp\bsp_iadc.c)(0x63A2730C)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_iadc.o --omf_browse .\output\bsp_iadc.crf --depend .\output\bsp_iadc.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -1064,13 +1092,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -1083,7 +1113,7 @@ I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
 F (.\User\bsp\bsp_i2c.c)(0x63F35C1E)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_i2c.o --omf_browse .\output\bsp_i2c.crf --depend .\output\bsp_i2c.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -1133,13 +1163,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -1151,8 +1183,8 @@ I (.\User\app_temp.h)(0x6424F025)
 I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
-F (.\User\bsp\bsp_i2c_port.c)(0x64252A85)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_i2c_port.o --omf_browse .\output\bsp_i2c_port.crf --depend .\output\bsp_i2c_port.d)
-I (.\User\main.h)(0x64251047)
+F (.\User\bsp\bsp_i2ca_port.c)(0x648FC4D0)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_i2ca_port.o --omf_browse .\output\bsp_i2ca_port.crf --depend .\output\bsp_i2ca_port.d)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -1202,13 +1234,86 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
+I (.\User\bsp\bsp_oled.h)(0x63A561B9)
+I (.\User\bsp\bsp_codec.h)(0x63F1D059)
+I (.\User\bsp\bsp_timer.h)(0x63BE2355)
+I (.\User\bsp\bsp_eeprom.h)(0x63F4468F)
+I (.\User\bsp\bsp_ds18b20.h)(0x64269482)
+I (.\User\app_key.h)(0x641AAC8D)
+I (.\User\app_codec.h)(0x63ABAD15)
+I (.\User\app_temp.h)(0x6424F025)
+I (.\User\app_adc.h)(0x641D7255)
+I (.\User\app_led.h)(0x64533286)
+I (.\User\app_test.h)(0x642423FB)
+F (.\User\bsp\bsp_i2cb_port.c)(0x648FC965)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_i2cb_port.o --omf_browse .\output\bsp_i2cb_port.crf --depend .\output\bsp_i2cb_port.d)
+I (.\User\main.h)(0x648FCD94)
+I (.\User\stm32f4xx.h)(0x641D6E29)
+I (.\CMSIS\core_cm4.h)(0x581CC64D)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
+I (.\CMSIS\core_cmInstr.h)(0x581CC64D)
+I (.\CMSIS\core_cmFunc.h)(0x581CC64D)
+I (.\CMSIS\core_cmSimd.h)(0x581CC64D)
+I (.\User\system_stm32f4xx.h)(0x582097AB)
+I (.\User\stm32f4xx_conf.h)(0x58221742)
+I (.\Stdlib\inc\stm32f4xx_adc.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_crc.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_dbgmcu.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_dma.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_exti.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_flash.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_gpio.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_i2c.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_iwdg.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_pwr.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_rcc.h)(0x58234D93)
+I (.\Stdlib\inc\stm32f4xx_rtc.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_sdio.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_spi.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_syscfg.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_tim.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_usart.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_wwdg.h)(0x581CC67B)
+I (.\Stdlib\inc\misc.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_cryp.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_hash.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_rng.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_can.h)(0x5821F050)
+I (.\Stdlib\inc\stm32f4xx_dac.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_dcmi.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_fsmc.h)(0x581CC67B)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x60252374)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
+I (.\Rtt_nano\include\rtthread.h)(0x60ED86CE)
+I (.\Rtt_nano\rtconfig.h)(0x641914B3)
+I (.\Rtt_nano\finsh\finsh_config.h)(0x60ED86CE)
+I (.\Rtt_nano\include\rtdebug.h)(0x60ED86CE)
+I (.\Rtt_nano\include\rtdef.h)(0x60ED86CE)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x60252376)
+I (.\Rtt_nano\include\rtservice.h)(0x60ED86CE)
+I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
+I (.\User\scs_thread.h)(0x63BE352B)
+I (.\User\bsp\sys.h)(0x641A81FA)
+I (.\User\bsp\debug_uart.h)(0x64183533)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
+I (.\User\bsp\bsp_iadc.h)(0x63A27336)
+I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
+I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -1221,7 +1326,7 @@ I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
 F (.\User\bsp\bsp_i2cc_port.c)(0x64256F3B)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_i2cc_port.o --omf_browse .\output\bsp_i2cc_port.crf --depend .\output\bsp_i2cc_port.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -1271,13 +1376,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -1289,8 +1396,8 @@ I (.\User\app_temp.h)(0x6424F025)
 I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
-F (.\User\bsp\bsp_oled.c)(0x63BE35C9)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_oled.o --omf_browse .\output\bsp_oled.crf --depend .\output\bsp_oled.d)
-I (.\User\main.h)(0x64251047)
+F (.\User\bsp\bsp_oled.c)(0x648FC461)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_oled.o --omf_browse .\output\bsp_oled.crf --depend .\output\bsp_oled.d)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -1340,13 +1447,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -1360,7 +1469,7 @@ I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
 I (User\bsp\bsp_oled_font.h)(0x63A41828)
 F (.\User\bsp\bsp_codec.c)(0x63F1D0E9)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_codec.o --omf_browse .\output\bsp_codec.crf --depend .\output\bsp_codec.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -1410,13 +1519,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -1429,7 +1540,7 @@ I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
 F (.\User\bsp\bsp_timer.c)(0x641D8C55)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_timer.o --omf_browse .\output\bsp_timer.crf --depend .\output\bsp_timer.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -1479,13 +1590,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -1498,7 +1611,7 @@ I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
 F (.\User\bsp\bsp_eeprom.c)(0x63F44C52)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_eeprom.o --omf_browse .\output\bsp_eeprom.crf --depend .\output\bsp_eeprom.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -1548,13 +1661,15 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -1567,7 +1682,7 @@ I (.\User\app_adc.h)(0x641D7255)
 I (.\User\app_led.h)(0x64533286)
 I (.\User\app_test.h)(0x642423FB)
 F (.\User\bsp\bsp_ds18b20.c)(0x642404E5)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_ds18b20.o --omf_browse .\output\bsp_ds18b20.crf --depend .\output\bsp_ds18b20.d)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -1617,13 +1732,86 @@ I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
+I (.\User\bsp\bsp_oled.h)(0x63A561B9)
+I (.\User\bsp\bsp_codec.h)(0x63F1D059)
+I (.\User\bsp\bsp_timer.h)(0x63BE2355)
+I (.\User\bsp\bsp_eeprom.h)(0x63F4468F)
+I (.\User\bsp\bsp_ds18b20.h)(0x64269482)
+I (.\User\app_key.h)(0x641AAC8D)
+I (.\User\app_codec.h)(0x63ABAD15)
+I (.\User\app_temp.h)(0x6424F025)
+I (.\User\app_adc.h)(0x641D7255)
+I (.\User\app_led.h)(0x64533286)
+I (.\User\app_test.h)(0x642423FB)
+F (.\User\bsp\bsp_spi.c)(0x64901CD9)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\CMSIS\startup\arm -I .\Stdlib\inc -I .\Stdlib\src -I .\User -I .\User\bsp -I .\Rtt_nano\include -I .\Rtt_nano\include\libc -I .\Rtt_nano\finsh -I .\Rtt_nano\device -I .\Rtt_nano-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0-D__UVISION_VERSION="536" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx-o .\output\bsp_spi.o --omf_browse .\output\bsp_spi.crf --depend .\output\bsp_spi.d)
+I (.\User\main.h)(0x648FCD94)
+I (.\User\stm32f4xx.h)(0x641D6E29)
+I (.\CMSIS\core_cm4.h)(0x581CC64D)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
+I (.\CMSIS\core_cmInstr.h)(0x581CC64D)
+I (.\CMSIS\core_cmFunc.h)(0x581CC64D)
+I (.\CMSIS\core_cmSimd.h)(0x581CC64D)
+I (.\User\system_stm32f4xx.h)(0x582097AB)
+I (.\User\stm32f4xx_conf.h)(0x58221742)
+I (.\Stdlib\inc\stm32f4xx_adc.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_crc.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_dbgmcu.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_dma.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_exti.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_flash.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_gpio.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_i2c.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_iwdg.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_pwr.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_rcc.h)(0x58234D93)
+I (.\Stdlib\inc\stm32f4xx_rtc.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_sdio.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_spi.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_syscfg.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_tim.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_usart.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_wwdg.h)(0x581CC67B)
+I (.\Stdlib\inc\misc.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_cryp.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_hash.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_rng.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_can.h)(0x5821F050)
+I (.\Stdlib\inc\stm32f4xx_dac.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_dcmi.h)(0x581CC67B)
+I (.\Stdlib\inc\stm32f4xx_fsmc.h)(0x581CC67B)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x60252374)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
+I (.\Rtt_nano\include\rtthread.h)(0x60ED86CE)
+I (.\Rtt_nano\rtconfig.h)(0x641914B3)
+I (.\Rtt_nano\finsh\finsh_config.h)(0x60ED86CE)
+I (.\Rtt_nano\include\rtdebug.h)(0x60ED86CE)
+I (.\Rtt_nano\include\rtdef.h)(0x60ED86CE)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x60252376)
+I (.\Rtt_nano\include\rtservice.h)(0x60ED86CE)
+I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
+I (.\User\scs_thread.h)(0x63BE352B)
+I (.\User\bsp\sys.h)(0x641A81FA)
+I (.\User\bsp\debug_uart.h)(0x64183533)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
+I (.\User\bsp\bsp_iadc.h)(0x63A27336)
+I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
+I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -3198,7 +3386,7 @@ I (.\Rtt_nano\include\rtdef.h)(0x60ED86CE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x60252376)
 I (.\Rtt_nano\include\rtservice.h)(0x60ED86CE)
 I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
@@ -3206,13 +3394,15 @@ I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)
@@ -3417,7 +3607,7 @@ I (.\Rtt_nano\include\rtdef.h)(0x60ED86CE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x60252376)
 I (.\Rtt_nano\include\rtservice.h)(0x60ED86CE)
 I (.\Rtt_nano\finsh\finsh_api.h)(0x60ED86CE)
-I (.\User\main.h)(0x64251047)
+I (.\User\main.h)(0x648FCD94)
 I (.\User\stm32f4xx.h)(0x641D6E29)
 I (.\CMSIS\core_cm4.h)(0x581CC64D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x636B4436)
@@ -3459,13 +3649,15 @@ I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
 I (.\User\scs_thread.h)(0x63BE352B)
 I (.\User\bsp\sys.h)(0x641A81FA)
 I (.\User\bsp\debug_uart.h)(0x64183533)
-I (.\User\bsp\bsp_gpio.h)(0x642684BA)
-I (.\User\bsp\bsp_temp.h)(0x6423AFAE)
-I (.\User\bsp\bsp_adc.h)(0x64532F79)
+I (.\User\bsp\bsp_gpio.h)(0x648FC15D)
+I (.\User\bsp\bsp_temp.h)(0x648FC90F)
+I (.\User\bsp\bsp_adc.h)(0x64901618)
 I (.\User\bsp\bsp_iadc.h)(0x63A27336)
 I (.\User\bsp\bsp_i2c.h)(0x63F1A05B)
-I (.\User\bsp\bsp_i2c_port.h)(0x64269465)
+I (.\User\bsp\bsp_i2ca_port.h)(0x648FC4CB)
+I (.\User\bsp\bsp_i2cb_port.h)(0x648FC225)
 I (.\User\bsp\bsp_i2cc_port.h)(0x64269486)
+I (.\User\bsp\bsp_spi.h)(0x648FFD6E)
 I (.\User\bsp\bsp_oled.h)(0x63A561B9)
 I (.\User\bsp\bsp_codec.h)(0x63F1D059)
 I (.\User\bsp\bsp_timer.h)(0x63BE2355)

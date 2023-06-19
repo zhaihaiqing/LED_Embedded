@@ -22,12 +22,71 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 E:\02_HD\LED\LED_Embedded\Project.uvprojx
-Project File Date:  05/04/2023
+Project File Date:  06/19/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F4XX'
-".\Output\STM32F4_DEMO.axf" - 0 Error(s), 0 Warning(s).
+compiling app_led.c...
+User\app_led.c(159): warning:  #177-D: variable "reg_val"  was declared but never referenced
+  	unsigned short reg_val;
+User\app_led.c(162): warning:  #177-D: variable "i"  was declared but never referenced
+  	uint8_t i=0;
+User\app_led.c(326): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				if((led1_current >= MIN_LED_CURRENT) || (led2_current >= MIN_LED_CURRENT))
+User\app_led.c(326): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				if((led1_current >= MIN_LED_CURRENT) || (led2_current >= MIN_LED_CURRENT))
+User\app_led.c(332): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(332): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(343): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(343): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(367): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				if(sADCCONVData.Exin_Analog_signal >= MIN_BNC_THRESHOLD)
+User\app_led.c(396): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(396): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(407): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(407): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(447): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					if((ex_led_sw_flag == LEDSW_ON)  && ((led1_current >= MIN_LED_CURRENT) || (led2_current >= MIN_LED_CURRENT)))
+User\app_led.c(447): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					if((ex_led_sw_flag == LEDSW_ON)  && ((led1_current >= MIN_LED_CURRENT) || (led2_current >= MIN_LED_CURRENT)))
+User\app_led.c(454): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(454): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(465): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(465): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) )
+User\app_led.c(491): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				if(sADCCONVData.Exin_Analog_signal >= MIN_BNC_THRESHOLD )
+User\app_led.c(212): warning:  #177-D: variable "count"  was declared but never referenced
+  	uint16_t count=0;
+User\app_led.c(958): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			if( (ex_led_sw_flag == LEDSW_ON) && (sADCCONVData.Exin_Analog_signal >= 0.01) )
+User\app_led.c(960): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				if((pled1_current > (sADCCONVData.Exin_Analog_signal*1.2) && IS_LED1_Exist) || (pled2_current > (sADCCONVData.Exin_Analog_signal*1.2) && IS_LED2_Exist))
+User\app_led.c(960): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				if((pled1_current > (sADCCONVData.Exin_Analog_signal*1.2) && IS_LED1_Exist) || (pled2_current > (sADCCONVData.Exin_Analog_signal*1.2) && IS_LED2_Exist))
+User\app_led.c(965): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					if((pled1_current > (sADCCONVData.Exin_Analog_signal*1.2) && IS_LED1_Exist) || (pled2_current > (sADCCONVData.Exin_Analog_signal*1.2) && IS_LED2_Exist))
+User\app_led.c(965): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					if((pled1_current > (sADCCONVData.Exin_Analog_signal*1.2) && IS_LED1_Exist) || (pled2_current > (sADCCONVData.Exin_Analog_signal*1.2) && IS_LED2_Exist))
+User\app_led.c(901): warning:  #177-D: variable "ix"  was declared but never referenced
+  	uint32_t ix=0;
+User\app_led.c: 27 warnings, 0 errors
+linking...
+Program Size: Code=35702 RO-data=6958 RW-data=1184 ZI-data=26824  
+FromELF: creating hex file...
+".\Output\STM32F4_DEMO.axf" - 0 Error(s), 27 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -40,7 +99,7 @@ Package Vendor: Keil
   C:\Keil_v5\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

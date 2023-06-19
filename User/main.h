@@ -50,9 +50,10 @@
 #include "bsp_adc.h"
 #include "bsp_iadc.h"
 #include "bsp_i2c.h"
-#include "bsp_i2c_port.h"
-
+#include "bsp_i2ca_port.h"
+#include "bsp_i2cb_port.h"
 #include "bsp_i2cc_port.h"
+#include "bsp_spi.h"
 
 #include "bsp_oled.h"
 #include "bsp_codec.h"

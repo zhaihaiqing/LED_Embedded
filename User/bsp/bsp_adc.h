@@ -47,6 +47,9 @@ ADC ch6---->Analog_Input
 #define ADC_RD_H()		GPIO_SetBits(GPIOB,GPIO_Pin_12)
 #define ADC_RD_L()		GPIO_ResetBits(GPIOB,GPIO_Pin_12)
 
+#define ADC_CONV_H()	GPIO_SetBits(GPIOE,GPIO_Pin_13)
+#define ADC_CONV_L()	GPIO_ResetBits(GPIOE,GPIO_Pin_13)
+
 
 #define IS_ADC_BUSY()			GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_13)
 
@@ -54,7 +57,7 @@ ADC ch6---->Analog_Input
 #define SET_ADC_RANGE_LOW()		GPIO_SetBits(GPIOE,GPIO_Pin_12);	//拉高RANG，设置为2 X ±VREF
 
 void ADC_GPIO_Configuration(void);
-void Start_ADC_ConV(uint8_t ch);
+void Start_ADC_ConV(void);
 void ADC_Config(void);
 
 

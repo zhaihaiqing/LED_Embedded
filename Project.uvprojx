@@ -474,9 +474,14 @@
               <FilePath>.\User\bsp\bsp_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_i2c_port.c</FileName>
+              <FileName>bsp_i2ca_port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\bsp\bsp_i2c_port.c</FilePath>
+              <FilePath>.\User\bsp\bsp_i2ca_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2cb_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\bsp\bsp_i2cb_port.c</FilePath>
             </File>
             <File>
               <FileName>bsp_i2cc_port.c</FileName>
@@ -507,6 +512,11 @@
               <FileName>bsp_ds18b20.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\bsp\bsp_ds18b20.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\bsp\bsp_spi.c</FilePath>
             </File>
           </Files>
         </Group>

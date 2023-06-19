@@ -2,26 +2,21 @@
 #ifndef __BSP_SPI_H
 #define __BSP_SPI_H
 
-#define ADT_CS		1
-#define FLASH_CS	2
-#define SRAM_CS		4
 
-#define SPI2_CS_ALL_H  8
+#define DA_CS1_H()      GPIO_SetBits(GPIOF,GPIO_Pin_0)
+#define DA_CS1_L()	  GPIO_ResetBits(GPIOF,GPIO_Pin_0)
 
-#define ADT_CS_H      GPIO_SetBits(GPIOE,GPIO_Pin_6)
-#define ADT_CS_L	  GPIO_ResetBits(GPIOE,GPIO_Pin_6)
-
-#define FLASH_CS_H    GPIO_SetBits(GPIOE,GPIO_Pin_15)
-#define FLASH_CS_L	  GPIO_ResetBits(GPIOE,GPIO_Pin_15)
-
-#define SRAM_CS_H     GPIO_SetBits(GPIOC,GPIO_Pin_13)
-#define SRAM_CS_L	  GPIO_ResetBits(GPIOC,GPIO_Pin_13)
+#define DA_CS2_H()      GPIO_SetBits(GPIOF,GPIO_Pin_1)
+#define DA_CS2_L()	  GPIO_ResetBits(GPIOF,GPIO_Pin_1)
 
 
 
-void SPI2_Configuration(void);
-unsigned char SPI2_ReadWriteByte(unsigned char byte);
-unsigned char SPI2_CS_Select(unsigned char cs);
+void SPI3_Config(void);
+unsigned char SPI3_ReadWriteByte(unsigned char byte);
+void SPI3_WriteByte(unsigned char byte);
+
+void AD5542_WriteA( float val);
+void AD5542_WriteB( float val);
 
 #endif /* __MAIN_H */
 

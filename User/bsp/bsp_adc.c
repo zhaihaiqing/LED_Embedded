@@ -12,7 +12,7 @@ void ADC_GPIO_Configuration(void)
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 ;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		//普通输出模式
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		//推挽输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	//100MHz
@@ -75,47 +75,21 @@ void ADC_GPIO_Configuration(void)
 
 
 //启动ADC转换
-void Start_ADC_ConV(uint8_t ch)
+void Start_ADC_ConV(void)
 {	
-	if(ch == ADC_CONV_A)
-	{
-		GPIO_ResetBits(GPIOE, GPIO_Pin_13);
-		__nop();
-		__nop();
-		//Delay_us(2);
-		GPIO_SetBits(GPIOE, GPIO_Pin_13);	//上升沿启动转换
-	}
-	else if(ch == ADC_CONV_B)
-	{
-		GPIO_ResetBits(GPIOE, GPIO_Pin_14);
-		__nop();
-		__nop();
-		//Delay_us(2);
-		GPIO_SetBits(GPIOE, GPIO_Pin_14);	//上升沿启动转换
-	}
-	else if(ch == ADC_CONV_C)
-	{
-		GPIO_ResetBits(GPIOE, GPIO_Pin_15);
-		__nop();
-		__nop();
-		//Delay_us(2);
-		GPIO_SetBits(GPIOE, GPIO_Pin_15);	//上升沿启动转换
-	}
-	else if(ch == ADC_CONV_ALL)
-	{
-		//GPIO_ResetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
-		GPIOE->BSRRH = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-		__nop();
-		__nop();
+	GPIO_SetBits(GPIOE,GPIO_Pin_13);
+	__nop();__nop();
+	__nop();__nop();
+	__nop();__nop();
+	__nop();__nop();
 //		__nop();
 //		__nop();
 //		__nop();
 //		__nop();
-		//Delay_us(2);
-		GPIOE->BSRRL = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-		//GPIO_SetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);	//上升沿启动转换
-	}
-	
+	//Delay_us(2);
+	GPIO_ResetBits(GPIOE,GPIO_Pin_13);
+
+	//GPIO_SetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);	//上升沿启动转换
 }
 
 //设置ADC工作模式
@@ -127,15 +101,25 @@ void ADC_Config(void)
 	
 	//GPIO_SetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);//复位过程中，拉高转换引脚
 	
-	GPIO_ResetBits(GPIOE,GPIO_Pin_11);	//
-	rt_thread_mdelay(100);
-	GPIO_SetBits(GPIOE,GPIO_Pin_12);	//给高脉冲，复位ADC，脉冲宽度≥100ns
-	rt_thread_mdelay(100);
-	GPIO_ResetBits(GPIOE,GPIO_Pin_11);	//
+	ADC_CONV_H();
+	rt_thread_mdelay(10);
 	
-	//GPIO_ResetBits(GPIOE,GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
+	GPIO_SetBits(GPIOE,GPIO_Pin_11);	//
+	rt_thread_mdelay(100);
+	GPIO_ResetBits(GPIOE,GPIO_Pin_11);	
+	rt_thread_mdelay(100);
 	
 	SET_ADC_RANGE_HIGH();
+	rt_thread_mdelay(10);
+	
+	ADC_CONV_L();
+	rt_thread_mdelay(10);
+	
+	ADC_CONV_H();
+	rt_thread_mdelay(10);
+	
+	ADC_CONV_L();
+	rt_thread_mdelay(10);	
 }
 
 
