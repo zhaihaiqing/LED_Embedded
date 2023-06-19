@@ -261,6 +261,9 @@ void get_1times_adc(void)	//获取5次数据，减去最大最小值，取中间3个数据求平均
 	A=0.5-sADCCONVData.LED1_Temp/V;
 	r4=A*r3/(1-A);
 	sADCCONVData.LED1_Temp = r4;				//计算出电阻值	
+	
+	//log_info("Exin_Analog_signal:%fV,LED2_Current:%fA,LED2_Temp:%f,LED1_Light_Intensity:%f,LED1_Current:%fA,LED1_Temp:%f\r\n",sADCCONVData.Exin_Analog_signal,sADCCONVData.LED2_Current,sADCCONVData.LED2_Temp,sADCCONVData.LED1_Light_Intensity,sADCCONVData.LED1_Current,sADCCONVData.LED1_Temp);
+	
 }
 
 

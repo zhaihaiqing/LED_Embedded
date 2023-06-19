@@ -22,7 +22,7 @@ sPID_t PID2 				= 	{0};
 
 
 
-#define PID_ADJ_REDUNDANCY_VALUE	0.03	//电流误差小于该值，不需要PID进行调节
+#define PID_ADJ_REDUNDANCY_VALUE	0.001	//电流误差小于该值，不需要PID进行调节
 
 
 /*			PID设置过程
