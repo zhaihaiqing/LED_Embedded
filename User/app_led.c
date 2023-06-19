@@ -300,7 +300,7 @@ void mled_thread_entry(void *par)
 					{
 						adjust_val1 = PID1_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
 						//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
-						if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE))
+						if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val1==100))
 						{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 							old_val1 = adjust_val1;
 							Set_LED1_Duty(adjust_val1);//打开LED//控制电流
@@ -310,7 +310,7 @@ void mled_thread_entry(void *par)
 					if(IS_LED2_Exist)
 					{
 						adjust_val2 = PID2_Cal(led2_current,sADCCONVData.LED2_Current);	
-						if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE))
+						if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val2==100))
 						{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 							old_val2 = adjust_val2;
 							Set_LED2_Duty(adjust_val2);//打开LED//控制电流
@@ -323,6 +323,8 @@ void mled_thread_entry(void *par)
 					PID_Parm_init();//关闭LED
 					old_val1 = 0;
 					old_val1 = 0;
+					adjust_val1=0;
+					adjust_val2=0;
 					Set_LED1_Duty(0);
 					Set_LED2_Duty(0);
 				}
@@ -360,7 +362,7 @@ void mled_thread_entry(void *par)
 							adjust_val1 = PID1_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
 							//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
 				
-							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE))
+							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val1==100))
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val1 = adjust_val1;
 								Set_LED1_Duty(adjust_val1);//打开LED//控制电流
@@ -370,7 +372,7 @@ void mled_thread_entry(void *par)
 						if(IS_LED2_Exist)
 						{
 							adjust_val2 = PID2_Cal(led2_current,sADCCONVData.LED2_Current);	
-							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE))
+							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val2==100))
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val2 = adjust_val2;
 								Set_LED2_Duty(adjust_val2);//打开LED//控制电流
@@ -383,6 +385,8 @@ void mled_thread_entry(void *par)
 						PID_Parm_init();//关闭LED
 						old_val1 = 0;
 						old_val1 = 0;
+						adjust_val1=0;
+						adjust_val2=0;
 						Set_LED1_Duty(0);
 						Set_LED2_Duty(0);
 					}	
@@ -414,7 +418,7 @@ void mled_thread_entry(void *par)
 						{
 							adjust_val1 = PID1_Cal(led1_current,sADCCONVData.LED1_Current);	//经PID算法计算出调整值
 							//log_info("T_C:%.3f,A_C:%.3f,P_C:%.3f\r\n",led1_current,sADCCONVData.LED1_Current,adjust_val1);
-							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE))
+							if( (adjust_val1 - old_val1 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val1 - adjust_val1 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val1==100))
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val1 = adjust_val1;
 								Set_LED1_Duty(adjust_val1);//打开LED//控制电流
@@ -424,7 +428,7 @@ void mled_thread_entry(void *par)
 						if(IS_LED2_Exist)
 						{
 							adjust_val2 = PID2_Cal(led2_current,sADCCONVData.LED2_Current);	
-							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE))
+							if( (adjust_val2 - old_val2 > PID_ADJ_REDUNDANCY_VALUE)  || (old_val2 - adjust_val2 > PID_ADJ_REDUNDANCY_VALUE) || (adjust_val2==100))
 							{		//将调整值转换为占空比的变化量（比例值），计算出新的占空比
 								old_val2 = adjust_val2;
 								Set_LED2_Duty(adjust_val2);//打开LED//控制电流
@@ -437,6 +441,8 @@ void mled_thread_entry(void *par)
 						PID_Parm_init();//关闭LED
 						old_val1 = 0;
 						old_val1 = 0;
+						adjust_val1=0;
+						adjust_val2=0;
 						Set_LED1_Duty(0);
 						Set_LED2_Duty(0);
 					}
@@ -482,6 +488,8 @@ void mled_thread_entry(void *par)
 			PID_Parm_init();//关闭LED
 			old_val1 = 0;
 			old_val1 = 0;
+			adjust_val1=0;
+			adjust_val2=0;
 			Set_LED1_Duty(0);
 			Set_LED2_Duty(0);
 		}

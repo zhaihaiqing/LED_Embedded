@@ -18,18 +18,22 @@ short Read_TMP75_Byte(unsigned char SLAVE_Device_Addr,unsigned char Reg_Addr)
     i2cb_port_start();
 	
 	i2cb_port_send_byte( SLAVE_Device_Addr);		//发送器件地址,写数据 	 
-	  
 	i2cb_port_wait_ack(); 
+	
     i2cb_port_send_byte(Reg_Addr);						//发送低地址
 	i2cb_port_wait_ack();
 	
 	i2cb_port_start();
+	
 	i2cb_port_send_byte(SLAVE_Device_Addr | 0x01);				//进入接收模式
 	i2cb_port_wait_ack();
+	
     msb=i2cb_port_read_byte();
-    i2cb_port_wait_ack();											//产生一个停止条件
+    i2cb_port_ack();
+	//产生一个停止条件
 	lsb=i2cb_port_read_byte();
-	i2cb_port_wait_ack();
+	i2cb_port_nack();
+	
 	i2cb_port_stop();
 	
 	rt_exit_critical();
