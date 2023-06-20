@@ -8,13 +8,15 @@
 //#define PID_KI	2
 //#define PID_KD	1
 
+//此前一直在用的一组数据
 //#define PID_KP	50
 //#define PID_KI	5
 //#define PID_KD	1
 
-#define PID_KP	50
-#define PID_KI	5
-#define PID_KD	1
+#define PID_KP	200
+#define PID_KI	20
+#define PID_KD	2
+
 
 
 sPID_t PID1 				= 	{0};
@@ -228,7 +230,7 @@ void mled_thread_entry(void *par)
 	
 	rt_thread_mdelay(400);
 	
-	Timer6_Init(999,20);	//clk=84M/(psc+1)	0.25us
+	Timer6_Init(999,20);	//clk=84M/(psc+1)	0.25ms
 	
 	if( IS_DIGIN_Rising() )
 	{

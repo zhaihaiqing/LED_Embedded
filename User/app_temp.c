@@ -146,11 +146,20 @@ void board_temp_thread_entry(void *par)
 {
 	float board_tempA=0,board_tempB=0,board_temp=0;
 	uint32_t ix=0;
-	rt_thread_mdelay(100);
+	rt_thread_mdelay(400);
+	
+	board_tempA = GetTempValue(TEMP_A_ADDR);
+	board_tempB = GetTempValue(TEMP_B_ADDR);
+	
+	rt_thread_mdelay(1000);
+	
+	board_tempA = GetTempValue(TEMP_A_ADDR);
+	board_tempB = GetTempValue(TEMP_B_ADDR);
+	
+	rt_thread_mdelay(1000);
 	
 	while(1)
 	{	
-		
 		board_tempA = GetTempValue(TEMP_A_ADDR);
 		rt_thread_mdelay(100);
 		board_tempB = GetTempValue(TEMP_B_ADDR);
