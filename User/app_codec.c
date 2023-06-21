@@ -29,7 +29,8 @@ void codec_thread_entry(void *par)
 		{
 			//Rotate_Increase_Cnt++;
 			
-			//FrontPanel_Set_current++;
+			//FrontPanel_Set_current++;			
+			
 			if( FrontPanel_Set_current % 5 == 0)
 			{
 				FrontPanel_Set_current=FrontPanel_Set_current+5;
@@ -49,6 +50,11 @@ void codec_thread_entry(void *par)
 			else if(FrontPanel_Set_current % 5 == 4)
 			{
 				FrontPanel_Set_current=FrontPanel_Set_current+1;
+			}
+			
+			if(FrontPanel_Set_current<20)
+			{
+				FrontPanel_Set_current=20;
 			}
 			
 			if(FrontPanel_Set_current>500)
@@ -87,6 +93,11 @@ void codec_thread_entry(void *par)
 			else if(FrontPanel_Set_current % 5 == 4)
 			{
 				FrontPanel_Set_current=FrontPanel_Set_current-4;
+			}
+			
+			if(FrontPanel_Set_current<20)
+			{
+				FrontPanel_Set_current=0;
 			}
 			
 			if(FrontPanel_Set_current<0)
